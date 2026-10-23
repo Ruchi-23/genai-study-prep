@@ -3,36 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GenAI Zero-to-Pro | 84-Day Interactive Study OS</title>
+  <title>6-Month Master Study & GenAI OS | 168-Day Tracker</title>
   <style>
     :root[data-theme="dark"] {
-      --bg: #0b0f19;
-      --surface: #131b2e;
-      --surface-hover: #1c2742;
-      --border: #263354;
-      --text: #f1f5f9;
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-hover: #1e293b;
+      --border: #26334d;
+      --text: #f8fafc;
       --text-muted: #94a3b8;
       --accent: #6366f1;
       --accent-hover: #818cf8;
       --success: #10b981;
       --warning: #f59e0b;
-      --milestone: #ec4899;
-      --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --danger: #ef4444;
+      --exam: #ec4899;
+      --dsa: #06b6d4;
+      --genai: #8b5cf6;
+      --sys: #f97316;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
     }
 
     :root[data-theme="light"] {
-      --bg: #f8fafc;
+      --bg: #f1f5f9;
       --surface: #ffffff;
-      --surface-hover: #f1f5f9;
-      --border: #e2e8f0;
+      --surface-hover: #f8fafc;
+      --border: #cbd5e1;
       --text: #0f172a;
-      --text-muted: #64748b;
+      --text-muted: #475569;
       --accent: #4f46e5;
       --accent-hover: #4338ca;
       --success: #059669;
       --warning: #d97706;
-      --milestone: #db2777;
-      --card-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+      --danger: #dc2626;
+      --exam: #db2777;
+      --dsa: #0891b2;
+      --genai: #7c3aed;
+      --sys: #ea580c;
+      --card-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
     }
 
     * {
@@ -46,12 +54,12 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.5;
-      padding: 20px;
+      padding: 16px;
       transition: background-color 0.2s, color 0.2s;
     }
 
     .container {
-      max-width: 1240px;
+      max-width: 1360px;
       margin: 0 auto;
     }
 
@@ -67,36 +75,38 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       box-shadow: var(--card-shadow);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .brand h1 {
-      font-size: 1.45rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .badge-sde {
-      font-size: 0.75rem;
+    .badge {
+      font-size: 0.72rem;
       background: var(--accent);
       color: #fff;
       padding: 3px 10px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
     .brand p {
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       margin-top: 4px;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -104,9 +114,9 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 10px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
       transition: all 0.15s ease;
     }
@@ -127,46 +137,92 @@
       background: var(--accent-hover);
     }
 
-    /* KPI Stats Bar */
+    /* Resource Quick-Launch Dock */
+    .resource-dock {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .dock-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dock-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .dock-pill {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .dock-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* KPI Stats Grid */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 16px 20px;
+      padding: 14px 18px;
       box-shadow: var(--card-shadow);
     }
 
     .stat-label {
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .stat-value {
-      font-size: 1.65rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      margin: 6px 0 4px;
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
+      margin: 4px 0;
     }
 
     .progress-bar-bg {
       width: 100%;
-      height: 8px;
+      height: 7px;
       background: var(--bg);
       border-radius: 999px;
       overflow: hidden;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .progress-bar-fill {
@@ -176,31 +232,32 @@
       transition: width 0.3s ease;
     }
 
-    /* Controls & Week Selector */
+    /* Filter Bar */
     .controls-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
       justify-content: space-between;
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-radius: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
+    /* Week Pills */
     .week-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .week-pill {
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       font-weight: 600;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -222,7 +279,7 @@
     /* Day Cards Grid */
     .days-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
       gap: 16px;
     }
 
@@ -230,7 +287,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -247,35 +304,40 @@
 
     .day-card.done {
       border-color: var(--success);
-      opacity: 0.88;
+      opacity: 0.86;
     }
 
-    .day-card.milestone-card {
-      border-left: 4px solid var(--milestone);
+    .day-card.exam-day {
+      border: 2px solid var(--exam);
     }
 
     .day-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
 
     .day-badges {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .tag {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 2px 8px;
       border-radius: 6px;
       background: var(--bg);
       color: var(--text-muted);
       border: 1px solid var(--border);
+    }
+
+    .tag.date-tag {
+      color: var(--text);
+      font-weight: 800;
     }
 
     .tag.weekend {
@@ -283,10 +345,15 @@
       border-color: var(--warning);
     }
 
-    .tag.milestone {
-      background: var(--milestone);
+    .tag.exam-tag {
+      background: var(--exam);
       color: #fff;
-      border-color: var(--milestone);
+      border-color: var(--exam);
+    }
+
+    .tag.buffer-tag {
+      color: var(--exam);
+      border-color: var(--exam);
     }
 
     .check-wrapper {
@@ -295,17 +362,19 @@
       gap: 6px;
       cursor: pointer;
       user-select: none;
+      font-size: 0.78rem;
+      font-weight: 700;
     }
 
     .check-wrapper input {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       accent-color: var(--success);
       cursor: pointer;
     }
 
     .day-title {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       font-weight: 700;
       margin-top: 4px;
     }
@@ -315,17 +384,60 @@
       color: var(--text-muted);
     }
 
-    .day-desc {
-      font-size: 0.86rem;
-      color: var(--text-muted);
+    /* Sub-blocks inside each day card */
+    .blocks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    .resource-box {
-      font-size: 0.8rem;
+    .study-block {
       background: var(--bg);
-      padding: 8px 10px;
-      border-radius: 8px;
-      border-left: 3px solid var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .study-block input[type="checkbox"] {
+      margin-top: 3px;
+      width: 15px;
+      height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .block-content {
+      flex: 1;
+    }
+
+    .block-label {
+      font-weight: 700;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: inline-block;
+      margin-bottom: 2px;
+    }
+
+    .lbl-dsa { color: var(--dsa); }
+    .lbl-genai { color: var(--genai); }
+    .lbl-iitm { color: var(--exam); }
+    .lbl-sys { color: var(--sys); }
+
+    .block-content a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .block-content a:hover {
+      text-decoration: underline;
     }
 
     .day-notes {
@@ -335,15 +447,45 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 7px 10px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       resize: vertical;
-      min-height: 36px;
+      min-height: 34px;
     }
 
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.72);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 540px;
+      padding: 22px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .modal h3 { margin-bottom: 10px; }
+    .modal label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 12px 0 5px;
+      font-weight: 600;
+    }
+    .modal input, .modal select { width: 100%; }
+
     @media (max-width: 640px) {
-      .days-grid {
-        grid-template-columns: 1fr;
-      }
+      .days-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -352,251 +494,425 @@
     <header>
       <div class="brand">
         <h1>
-          ⚡ GenAI Zero-to-Pro Daily OS
-          <span class="badge-sde">Amazon SDE Edition · 84 Days</span>
+          ⚡ 6-Month Master SDE & GenAI OS
+          <span class="badge">168 Days · Oct 23, 2026 – Apr 8, 2027</span>
         </h1>
-        <p>Weekday: 75-min Pre-Standup Theory & Code · Weekend: 4-Hr Portfolio Build Sprint</p>
+        <p>Amazon Full-Time + IITM (DL, AI, Corp Finance) + Striver DSA + Agentic AI + System Design + React</p>
       </div>
       <div class="header-actions">
-        <button id="freezeBtn" title="Use a Streak Freeze for on-call or travel days">🧊 Freeze Streak (<span id="freezeCount">3</span> left)</button>
+        <button id="openModalBtn" class="btn-primary">✨ + Add Dynamic Topic</button>
+        <button id="freezeBtn">🧊 Freeze Streak (<span id="freezeCount">5</span>)</button>
         <button id="themeBtn">🌗 Theme</button>
-        <button id="exportBtn">⬇ Export JSON</button>
+        <button id="exportBtn">⬇ Backup JSON</button>
       </div>
     </header>
+
+    <!-- Master Resource Quick-Launch Dock -->
+    <section class="resource-dock">
+      <div class="dock-title">
+        <span>📌 Your Master Playlists & Portals (Click to Launch)</span>
+        <span id="countdownBanner" style="color:var(--exam);"></span>
+      </div>
+      <div class="dock-links">
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank">🔥 Striver DSA Playlist</a>
+        <a class="dock-pill" href="https://youtu.be/D74el9mvNak" target="_blank">🤖 Agentic AI Crash Course (2.5h)</a>
+        <a class="dock-pill" href="https://youtu.be/rV3HJ4LEZ7k" target="_blank">🧠 Complete Agentic AI (10.5h)</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PL6W8uoQQ2c63f469AyV78np0rbxRFppkx" target="_blank">⚡ 10-Day Playlist (2h/day @ 2x)</a>
+        <a class="dock-pill" href="https://youtu.be/TAKDIvvUdc4" target="_blank">🛠️ Claude Code Crash Course</a>
+        <a class="dock-pill" href="https://youtu.be/S6jy0T85DFs" target="_blank">🏗️ AI System Design (Codebasics)</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">🔬 Karpathy Zero-to-Hero</a>
+        <a class="dock-pill" href="https://portal.mlu.aws.dev/course-catalog/" target="_blank">☁️ AWS MLU Portal</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX" target="_blank">📐 Gaurav Sen System Design</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLrtCHHeadkHp92TyPt1Fj452_VGLipJnL" target="_blank">🎯 Exponent SysDesign</a>
+        <a class="dock-pill" href="https://www.youtube.com/@hnasr/playlists" target="_blank">🌐 Hussein Nasser Backend</a>
+        <a class="dock-pill" href="https://www.youtube.com/@krishnaik06/videos" target="_blank">🚀 Krish Naik Weekend Channel</a>
+      </div>
+    </section>
 
     <!-- KPI Dashboard -->
     <section class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Overall Completion</div>
-        <div class="stat-value"><span id="completedCount">0</span> / 84 Days (<span id="completedPct">0%</span>)</div>
+        <div class="stat-label">168-Day Master Progress</div>
+        <div class="stat-value"><span id="completedCount">0</span> / <span id="totalDaysCount">168</span> (<span id="completedPct">0%</span>)</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgressBar"></div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Study Hours Logged</div>
-        <div class="stat-value"><span id="hoursLogged">0</span> <span style="font-size:0.85rem;color:var(--text-muted);font-weight:500;">/ 153 hrs</span></div>
-        <div style="font-size:0.78rem;color:var(--text-muted);">1.25h Mon–Fri · 4h Sat–Sun</div>
+        <div class="stat-label">Striver DSA Sprint (Oct 23 – Dec 13)</div>
+        <div class="stat-value" style="color:var(--dsa);"><span id="dsaDoneCount">0</span> / 52 Days</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">1.5h–2.5h daily @ 1.5x + Notes</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Active Streak</div>
+        <div class="stat-label">IITM Exam Readiness</div>
+        <div class="stat-value" style="color:var(--exam);"><span id="iitmDoneCount">0</span> Blocks</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">Quiz 1 (Nov 15) · Quiz 2 (Dec 5) · End (Jan 10)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Study Streak</div>
         <div class="stat-value">🔥 <span id="streakVal">0</span> Days</div>
-        <div style="font-size:0.78rem;color:var(--text-muted);" id="streakSub">Check off today's block to build momentum</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Portfolio Milestones Shipped</div>
-        <div class="stat-value">🚀 <span id="milestoneCount">0</span> / 4 Repos</div>
-        <div style="font-size:0.78rem;color:var(--text-muted);">Weeks 3, 6, 9 & 12 Capstone Releases</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">Total Hours Logged: <strong id="hoursLogged">0</strong>h</div>
       </div>
     </section>
 
-    <!-- Filters -->
+    <!-- Filter Controls -->
     <section class="controls-bar">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <select id="phaseFilter">
-          <option value="all">All Phases (Weeks 1–12)</option>
-          <option value="1">Phase 1: LLM Internals & APIs (W1–W3)</option>
-          <option value="2">Phase 2: Production Hybrid RAG (W4–W6)</option>
-          <option value="3">Phase 3: LangGraph & Multi-Agents (W7–W9)</option>
-          <option value="4">Phase 4: QLoRA Fine-Tuning & LLMOps (W10–W12)</option>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="monthFilter">
+          <option value="all">All 6 Months (Weeks 1–24)</option>
+          <option value="1">Month 1 (W1–W4): Striver DSA + Fast GenAI + IITM Quiz 1</option>
+          <option value="2">Month 2 (W5–W8): Striver Finale + 10.5h Agentic AI + IITM Quiz 2</option>
+          <option value="3">Month 3 (W9–W12): Karpathy + IITM End-Term Blitz (Jan 10)</option>
+          <option value="4">Month 4 (W13–W16): SysDesign (Gaurav/Exponent/LLD) + AWS MLU</option>
+          <option value="5">Month 5 (W17–W20): Backend (@hnasr) + React Udemy + GenAI Udemy</option>
+          <option value="6">Month 6 (W21–W24): Hello Interview Mocks + Full-Stack AI Capstones</option>
         </select>
         <select id="statusFilter">
-          <option value="all">All Statuses</option>
-          <option value="todo">Remaining Only</option>
-          <option value="done">Completed Only</option>
-          <option value="milestone">Portfolio Milestones Only</option>
+          <option value="all">All Days</option>
+          <option value="todo">Remaining Days</option>
+          <option value="done">Completed Days</option>
+          <option value="iitm">IITM Exam Buffer Days</option>
+          <option value="weekend">Weekends Only (Krish Naik + Deep Sprint)</option>
         </select>
-        <input type="text" id="searchInput" placeholder="Search topic (e.g., Qdrant, LangGraph, Bedrock)..." style="min-width:250px;" />
+        <input type="text" id="searchInput" placeholder="Search (e.g., Striver, Quiz 1, Karpathy, React, hnasr)..." style="min-width:240px;" />
       </div>
-      <button id="jumpNextBtn" class="btn-primary">🎯 Jump to Next Unfinished Day</button>
+      <div style="display:flex;gap:8px;">
+        <button id="jumpTodayBtn" class="btn-primary">📅 Jump to Today</button>
+        <button id="jumpNextBtn">🎯 Next Unfinished</button>
+      </div>
     </section>
 
-    <!-- Week Selector Pills -->
+    <!-- Week Pills (Weeks 1 to 24) -->
     <div class="week-pills" id="weekPills"></div>
 
-    <!-- Day Cards Container -->
+    <!-- Day Cards Grid -->
     <main class="days-grid" id="daysGrid"></main>
   </div>
 
+  <!-- Dynamic Topic Modal -->
+  <div class="modal-overlay" id="topicModal">
+    <div class="modal">
+      <h3>✨ Add Dynamic AI Topic & Auto-Fetch Resource</h3>
+      <p style="font-size:0.82rem;color:var(--text-muted);">
+        Inject a new topic or Krish Naik weekend tutorial directly into any week of your 6-month plan.
+      </p>
+      <label>Topic / Video Title:</label>
+      <input type="text" id="modalTopicInput" placeholder="e.g., Multi-Agent MCP Server with Claude Code" />
+      <label>Resource / YouTube URL (Leave blank to auto-assign):</label>
+      <input type="text" id="modalUrlInput" placeholder="https://www.youtube.com/@krishnaik06/videos" />
+      <label>Assign to Week (1–24):</label>
+      <select id="modalWeekSelect"></select>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px;">
+        <button id="closeModalBtn">Cancel</button>
+        <button id="confirmAddBtn" class="btn-primary">Add to Schedule</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // 12-Week Curriculum Blueprint -> Expands deterministically into 84 Day-by-Day Cards
-    const weeklyBlueprint = [
-      {
-        week: 1, phase: 1, theme: "Transformer Internals & Multi-Provider Setup",
-        days: [
-          ["Self-Attention & Q/K/V Intuition", "Watch 3Blue1Brown Deep Learning Ch. 5 & 6; write matrix notes.", "3Blue1Brown - Attention in Transformers"],
-          ["Tokenization & Byte-Pair Encoding", "Code along with Karpathy's tokenizer video; inspect tiktoken cl100k_base.", "Andrej Karpathy - Let's build the GPT Tokenizer"],
-          ["Building Bigram & Self-Attention in PyTorch", "First 60 mins of Karpathy's 'Let's build GPT from scratch'.", "Andrej Karpathy - Let's build GPT"],
-          ["Multi-Head Attention & LayerNorm", "Finish Karpathy's GPT implementation and train on tiny Shakespeare.", "Andrej Karpathy GitHub: nanoGPT"],
-          ["AWS Bedrock & OpenAI SDK Setup", "Initialize `genai-portfolio` monorepo with `uv` or `Poetry`; configure boto3 Bedrock.", "AWS Bedrock Runtime API Docs"],
-          ["WEEKEND BUILD: Unified LLM Client Wrapper", "Build an async Python wrapper supporting OpenAI + AWS Bedrock Claude with token & cost calculation.", "Deliverable: `core/llm_client.py` + unit tests"],
-          ["WEEKEND BUILD: CLI Prompt & Cost Benchmark Tool", "Add retry exponential backoff, temperature/top-p controls, and CLI table output.", "Deliverable: Week 1 Git Tag `v0.1-foundation`"]
-        ]
-      },
-      {
-        week: 2, phase: 1, theme: "Structured Outputs, Pydantic & Function Calling",
-        days: [
-          ["System Prompts & Few-Shot Engineering", "Complete DeepLearning.AI Prompt Engineering short course.", "DeepLearning.AI - ChatGPT Prompt Engineering"],
-          ["Strict JSON Mode & Pydantic Schemas", "Force nested Pydantic schemas using OpenAI Structured Outputs & Bedrock Converse API.", "Pydantic + OpenAI Structured Outputs Guide"],
-          ["The Instructor Library & Auto-Retries", "Use `instructor` to automatically feed Pydantic validation errors back to the LLM.", "Instructor Library by Jason Liu"],
-          ["Native Tool & Function Calling", "Define JSON tool schemas and handle multi-turn tool execution loops.", "Anthropic / Bedrock Tool Use Documentation"],
-          ["AST Code Parsing for LLM Context", "Use Python `ast` and `tree-sitter` to extract clean function diffs from Git commits.", "Python AST Module Docs"],
-          ["WEEKEND BUILD: Deterministic Log & Diff Extractor", "Build a pipeline that ingests raw Git diffs and outputs structured bug/security findings.", "Deliverable: `services/diff_analyzer.py`"],
-          ["WEEKEND BUILD: Validation Self-Healing Loop", "Add Tenacity/Instructor retry loops + unit tests verifying 100% schema compliance.", "Deliverable: Week 2 Git Tag `v0.2-structured`"]
-        ]
-      },
-      {
-        week: 3, phase: 1, theme: "Async Streaming & Milestone 1 Deployment",
-        days: [
-          ["FastAPI Async Endpoints & Concurrency", "Build non-blocking LLM routes using `AsyncOpenAI` and `asyncio.gather`.", "FastAPI Concurrency & Async Guide"],
-          ["Server-Sent Events (SSE) Token Streaming", "Stream real-time LLM tokens and partial JSON deltas to the client.", "FastAPI StreamingResponse + SSE"],
-          ["Prompt Caching & Latency Optimization", "Implement Anthropic/Bedrock prompt caching for large repo context headers.", "AWS Bedrock Prompt Caching Docs"],
-          ["GitHub Webhook Integration", "Set up HMAC-verified GitHub PR webhook listener in FastAPI.", "GitHub Webhooks Developer Guide"],
-          ["Dockerizing the Review Assistant", "Write multi-stage `Dockerfile` and `docker-compose.yml` for the PR reviewer.", "Docker Best Practices for Python"],
-          ["WEEKEND BUILD: Ship Milestone 1 (PR Code-Review Agent)", "Connect GitHub Webhook -> AST Parser -> Bedrock/OpenAI -> Inline PR Comment poster.", "MILESTONE 1 REPO: Production PR Code-Review Assistant"],
-          ["WEEKEND BUILD: Milestone 1 Architecture Diagram & Demo", "Add Excalidraw architecture diagram to README and record a 2-min Loom walkthrough.", "MILESTONE 1 SHIPPED ✅"]
-        ]
-      },
-      {
-        week: 4, phase: 2, theme: "Embeddings, Chunking & Vector Databases",
-        days: [
-          ["Dense Embeddings & Vector Spaces", "Compare OpenAI `text-embedding-3-small`, Cohere v3, and BGE embeddings.", "MTEB Leaderboard & Hugging Face Docs"],
-          ["Chunking Strategies Deep Dive", "Implement fixed, recursive, markdown-header, and semantic chunking.", "Greg Kamradt - 5 Levels of Text Splitting"],
-          ["Spinning Up Qdrant in Docker", "Deploy Qdrant locally via Docker; create collections with HNSW index parameters.", "Qdrant Quickstart Documentation"],
-          ["Metadata Filtering & Payload Indexing", "Attach document source, timestamp, and access-control metadata to vector payloads.", "Qdrant Payload & Filtering Guide"],
-          ["Parsing Complex PDFs, Tables & Code", "Use `Docling` or `LlamaParse` to extract clean Markdown tables from technical PDFs.", "Docling / LlamaIndex Document Parsing"],
-          ["WEEKEND BUILD: Production Document Ingestion Pipeline", "Build an async ingestion worker that parses technical docs, chunks markdown, and upserts to Qdrant.", "Deliverable: `rag/ingest_pipeline.py`"],
-          ["WEEKEND BUILD: Incremental Indexing & Deduplication", "Add SHA-256 content hashing so unchanged documents are skipped on re-index.", "Deliverable: Week 4 Git Tag `v0.4-ingestion`"]
-        ]
-      },
-      {
-        week: 5, phase: 2, theme: "Advanced Hybrid RAG & Cross-Encoder Re-Ranking",
-        days: [
-          ["Why Naive Dense RAG Fails", "Analyze lexical mismatch on exact SKUs, error codes, and function names.", "Sam Witteveen - Advanced RAG Series"],
-          ["Sparse Vectors (BM25 / SPLADE)", "Implement sparse lexical indexing alongside dense embeddings in Qdrant.", "Qdrant Hybrid Search & Sparse Vectors"],
-          ["Reciprocal Rank Fusion (RRF)", "Combine BM25 and Dense search rankings mathematically using RRF.", "Krish Naik - Hybrid Search RAG Tutorial"],
-          ["Query Transformation: HyDE & Multi-Query", "Implement Hypothetical Document Embeddings and parallel sub-query expansion.", "DeepLearning.AI - Advanced Retrieval for AI"],
-          ["Cross-Encoder Re-Ranking", "Add a second-stage Cross-Encoder (`BAAI/bge-reranker-large` or Cohere Rerank) to score top-25 hits.", "Sentence-Transformers Cross-Encoder Docs"],
-          ["WEEKEND BUILD: Hybrid Search + Re-Ranking Pipeline", "Wire Query Rewriter -> Qdrant Hybrid RRF (Top 25) -> Cross-Encoder Re-ranker (Top 5).", "Deliverable: `rag/hybrid_retriever.py`"],
-          ["WEEKEND BUILD: Grounded Citations & Hallucination Guard", "Force the generator to output inline `[Doc_ID:Chunk_ID]` citations verified against retrieved context.", "Deliverable: Week 5 Git Tag `v0.5-hybrid-rag`"]
-        ]
-      },
-      {
-        week: 6, phase: 2, theme: "Quantitative RAG Evaluation (RAGAS) & Milestone 2",
-        days: [
-          ["The RAG Triad Metrics", "Learn Context Precision, Context Recall, Faithfulness, and Answer Relevance.", "DeepLearning.AI - Building & Evaluating Advanced RAG"],
-          ["Synthetic Golden Dataset Generation", "Generate 40 complex Q&A + ground-truth pairs from your docs automatically.", "RAGAS Testset Generation Docs"],
-          ["Automated Evaluation Pipeline with RAGAS", "Write a pytest/CLI evaluation harness running RAGAS metrics on every retrieval change.", "RAGAS Framework Documentation"],
-          ["Semantic Caching with Redis/Qdrant", "Cache high-similarity user queries to return instant (<50ms) responses.", "GPTCache / Qdrant Semantic Cache"],
-          ["FastAPI + Streamlit RAG UI", "Build a clean interface displaying retrieved chunks, re-ranker scores, and citation links.", "Streamlit Chat Elements Docs"],
-          ["WEEKEND BUILD: Ship Milestone 2 (Enterprise Hybrid RAG)", "Run ablation benchmark: Naive RAG vs. Hybrid RAG vs. Hybrid + Re-ranked RAG.", "MILESTONE 2 REPO: Enterprise Hybrid-Search RAG Engine"],
-          ["WEEKEND BUILD: Publish Benchmark Table & README", "Document exact precision/faithfulness percentage improvements in your GitHub README.", "MILESTONE 2 SHIPPED ✅"]
-        ]
-      },
-      {
-        week: 7, phase: 3, theme: "Agentic Reasoning (ReAct), Tool Sandboxes & Memory",
-        days: [
-          ["The ReAct (Reason + Act) Loop", "Build a raw ReAct agent loop from scratch in 80 lines of Python without frameworks.", "Yao et al. ReAct Paper + Simon Willison Blog"],
-          ["Introduction to LangGraph Architecture", "Understand StateGraph, Nodes, Edges, and TypedDict state reducers.", "DeepLearning.AI - AI Agents in LangGraph"],
-          ["Safe Tool Execution & Sandboxing", "Build SQL read-only query tools and sandboxed Python execution tools.", "LangGraph ToolNode & E2B Sandbox Docs"],
-          ["Self-Correction on Tool Errors", "Route SQL syntax errors or API tracebacks back into the agent node for automatic repair.", "Sam Witteveen - LangGraph Self-Correcting Agents"],
-          ["Agent Memory: Short-Term vs. Episodic", "Combine thread-level message trimming with long-term vector memory stores.", "LangGraph Memory & Store Concepts"],
-          ["WEEKEND BUILD: Self-Healing Text-to-SQL & Analytics Agent", "Build a LangGraph agent that inspects DB schemas, writes SQL, catches errors, and plots insights.", "Deliverable: `agents/sql_analyst_graph.py`"],
-          ["WEEKEND BUILD: Guardrails Against Infinite Agent Loops", "Add max-step recursion limits, token budgets, and fallback nodes.", "Deliverable: Week 7 Git Tag `v0.7-react-agent`"]
-        ]
-      },
-      {
-        week: 8, phase: 3, theme: "Stateful Checkpointing & Human-in-the-Loop (HITL)",
-        days: [
-          ["Persistent Checkpointers (Postgres / SQLite)", "Persist every graph super-step so agents can pause and resume across server restarts.", "LangGraph Persistence & Checkpointers"],
-          ["Time-Travel Debugging & State Forking", "Replay historical agent states and fork execution with modified tool outputs.", "LangGraph Time Travel Guide"],
-          ["Human-in-the-Loop (`interrupt` Breakpoints)", "Pause graph execution before high-risk actions (e.g., AWS infra changes or DB writes).", "LangGraph Human-in-the-Loop Docs"],
-          ["Parallel Node Execution (Map-Reduce)", "Use LangGraph `Send` API to fan out research tasks across parallel sub-agents.", "LangGraph Map-Reduce Tutorial"],
-          ["Streaming Agent Graph Events", "Stream node transitions and intermediate tool thoughts to a frontend via `astream_events`.", "LangGraph Streaming Modes Guide"],
-          ["WEEKEND BUILD: Stateful Remediation Workflow with Approval Gate", "Build an API where an agent diagnoses an issue, pauses for Slack/REST approval, and resumes.", "Deliverable: `agents/hitl_remediation.py`"],
-          ["WEEKEND BUILD: State Visualizer & Replay Endpoint", "Expose `/threads/{id}/history` and `/threads/{id}/approve` endpoints in FastAPI.", "Deliverable: Week 8 Git Tag `v0.8-hitl-state`"]
-        ]
-      },
-      {
-        week: 9, phase: 3, theme: "Multi-Agent Orchestration, MCP & Milestone 3",
-        days: [
-          ["Multi-Agent Topologies: Supervisor vs. Swarm", "Design a Supervisor router that delegates tasks to specialized worker agents.", "LangGraph Multi-Agent Workflows Guide"],
-          ["Model Context Protocol (MCP) Fundamentals", "Understand MCP hosts, clients, and servers for standardized tool/context sharing.", "Model Context Protocol (MCP) Official Spec"],
-          ["Building a Custom MCP Server in Python", "Build a FastMCP server exposing local CloudWatch/log analysis and FinOps cost tools.", "FastMCP / Python MCP SDK Docs"],
-          ["Agent Evaluation & Trajectory Testing", "Evaluate whether multi-agent systems called the right sequence of tools.", "LangSmith Agent Trajectory Evaluation"],
-          ["End-to-End Integration of Triage System", "Connect Supervisor -> Log Analyzer Agent -> Runbook RAG Agent -> FinOps/Remediation Agent.", "System Integration Sprint"],
-          ["WEEKEND BUILD: Ship Milestone 3 (Autonomous Incident & FinOps Multi-Agent)", "Package the multi-agent system with MCP tools and Human-in-the-Loop approval UI.", "MILESTONE 3 REPO: Autonomous Incident Triage Multi-Agent"],
-          ["WEEKEND BUILD: Architecture Walkthrough & Live Trace Demo", "Record a 2-min demo showing the agent diagnosing a simulated outage and waiting for human sign-off.", "MILESTONE 3 SHIPPED ✅"]
-        ]
-      },
-      {
-        week: 10, phase: 4, theme: "Open-Weight Models, Dataset Curation & QLoRA Fine-Tuning",
-        days: [
-          ["When to Fine-Tune vs. RAG vs. Prompting", "Learn cost/latency/accuracy trade-offs of adapting small 7B–8B open-weight models.", "Maxime Labonne - Fine-Tune Your Own LLM Course"],
-          ["LoRA & QLoRA Math Intuition", "Understand Low-Rank Adaptation ($W + BA$), rank $r$, $\\alpha$, and 4-bit NormalFloat quantization.", "QLoRA Paper & Trelis Research Breakdown"],
-          ["Synthetic Instruction Dataset Curation", "Format high-quality ShareGPT/ChatML datasets and filter low-quality rows.", "Hugging Face Datasets & Distilabel"],
-          ["Fast QLoRA Fine-Tuning with Unsloth", "Set up Unsloth + Hugging Face `TRL` (`SFTTrainer`) on Colab / RunPod GPU.", "Unsloth Notebooks (Llama-3.1-8B / Qwen-2.5-7B)"],
-          ["Hyperparameter Tuning & Loss Curves", "Monitor training vs. validation loss, learning rate schedulers, and LoRA target modules.", "Weights & Biases / TRL Fine-Tuning Guide"],
-          ["WEEKEND BUILD: Fine-Tune an 8B Specialist Model", "Fine-tune Llama-3.1-8B or Qwen-2.5-7B on complex Text-to-SQL or strict tool-calling schemas.", "Deliverable: LoRA Adapter on Hugging Face Hub"],
-          ["WEEKEND BUILD: Merge Adapters & Sanity Benchmark", "Merge LoRA weights into base model and run zero-shot before/after evaluation.", "Deliverable: Week 10 Git Tag `v1.0-qlora-model`"]
-        ]
-      },
-      {
-        week: 11, phase: 4, theme: "Quantization, vLLM High-Throughput Serving & LLMOps",
-        days: [
-          ["Post-Training Quantization (GGUF & AWQ)", "Convert your merged model into 4-bit GGUF and AWQ formats for fast inference.", "Maxime Labonne - Quantize LLMs with AutoAWQ / llama.cpp"],
-          ["High-Throughput Serving with vLLM", "Understand PagedAttention, continuous batching, andKV-cache memory calculation.", "vLLM Official Documentation"],
-          ["LLMOps Observability with Langfuse / LangSmith", "Trace token usage, cost per user, p95 latency, and prompt versions in production.", "Langfuse Open-Source LLMOps Docs"],
-          ["Security Guardrails & Prompt Injection Defense", "Add input/output guardrails for PII redaction, toxicity, and jailbreak prevention.", "Llama Guard / NeMo Guardrails"],
-          ["Semantic Router & Model Cascading", "Route easy queries to your fast 8B model and complex edge cases to Claude 3.5 / GPT-4o.", "Aurelio AI - Semantic Router"],
-          ["WEEKEND BUILD: Production vLLM + Langfuse LLMOps Stack", "Deploy your quantized model behind an OpenAI-compatible vLLM API with full Langfuse telemetry.", "Deliverable: `llmops/serving_stack`"],
-          ["WEEKEND BUILD: Load Testing & Latency Profiling", "Run Locust/k6 concurrent requests to measure Time-To-First-Token (TTFT) and tokens/sec.", "Deliverable: Week 11 Git Tag `v1.1-llmops`"]
-        ]
-      },
-      {
-        week: 12, phase: 4, theme: "Benchmarking, Capstone Packaging & Career Launch",
-        days: [
-          ["Rigorous Model & System Benchmarking", "Compare Fine-Tuned 8B vs. Base 8B vs. GPT-4o on accuracy, latency, and $/1M tokens.", "LLM-as-a-Judge Evaluation Scripts"],
-          ["Polishing GitHub Profile & Monorepo", "Standardize all 4 repositories with badges, quickstart `Makefile`s, and `.env.example`.", "Elite GitHub Portfolio Standards"],
-          ["System Design Diagrams (Excalidraw / Mermaid)", "Create high-signal architectural diagrams for all 4 projects showing data & control flow.", "Excalidraw / Mermaid.js"],
-          ["Amazon Internal Transfer / Promo Narrative", "Frame your 4 projects around AWS Bedrock, latency reduction, and operational excellence.", "Amazon SDE GenAI Portfolio Framing"],
-          [" GenAI System Design Interview Prep", "Practice designing scalable RAG, multi-tenant agent platforms, and low-latency inference.", "Chip Huyen - AI Engineering / System Design"],
-          ["WEEKEND BUILD: Ship Milestone 4 (Fine-Tuned Model + LLMOps Repo)", "Publish the complete fine-tuning notebook, vLLM serving config, and cost/accuracy benchmark report.", "MILESTONE 4 REPO: Domain-Specialist LLM + LLMOps"],
-          ["WEEKEND BUILD: Final Portfolio Launch & Demo Reel", "Pin all 4 flagship repositories to your GitHub profile with 2-minute Loom walkthroughs.", "🎓 84-DAY GEN-AI PRO ROADMAP COMPLETE!"]
-        ]
-      }
+    // Populate Modal Week Selector
+    const modalWeekSel = document.getElementById("modalWeekSelect");
+    for (let w = 1; w <= 24; w++) {
+      const opt = document.createElement("option");
+      opt.value = w;
+      opt.textContent = `Week ${w} (Month ${Math.ceil(w / 4)})`;
+      modalWeekSel.appendChild(opt);
+    }
+
+    // Striver DSA 52-Day Topic Sequence (Oct 23 - Dec 13, 2026)
+    const striverTopics = [
+      "Step 1: Learn the Basics, Patterns & Time Complexity",
+      "Step 1: Basic Maths, Recursion & Hashing Notes",
+      "Step 2: Sorting Techniques (Merge, Quick, Recursive Bubble)",
+      "Step 3.1: Arrays Easy (2nd Largest, Rotate, Union, Missing Num)",
+      "Step 3.1: Arrays Easy (Max Consecutive 1s, Longest Subarray +K)",
+      "Step 3.2: Arrays Medium (2Sum, Sort 0/1/2, Kadane's Algorithm)",
+      "Step 3.2: Arrays Medium (Stock Buy/Sell, Rearrange by Sign, Next Permutation)",
+      "Step 3.2: Arrays Medium (Leaders, Longest Consecutive Sequence, Set Matrix Zeroes)",
+      "Step 3.2: Arrays Medium (Rotate Matrix 90, Spiral Matrix, Count Subarrays Sum K)",
+      "Step 3.3: Arrays Hard (Pascal Triangle, Majority Element II, 3Sum, 4Sum)",
+      "Step 3.3: Arrays Hard (Merge Overlapping Intervals, Merge Sorted Arrays, Count Inversions)",
+      "Step 3.3: Arrays Hard (Reverse Pairs, Max Product Subarray, Missing & Repeating)",
+      "Step 4.1: Binary Search 1D (Lower/Upper Bound, Search Rotated Array I & II)",
+      "Step 4.1: Binary Search 1D (Min in Rotated Array, Peak Element, Single Element)",
+      "Step 4.2: BS on Answers (Sqrt, Nth Root, Koko Eating Bananas, M Bouquets)",
+      "Step 4.2: BS on Answers (Aggressive Cows, Book Allocation, Split Array Largest Sum)",
+      "Step 4.2: BS on Answers (Median of 2 Sorted Arrays, Kth Element, 2D Matrix BS)",
+      "Step 5: Strings Medium/Hard (Reverse Words, Longest Palindrome, Roman to Int, Atoi)",
+      "Step 6.1: Linked List 1D & Doubly LL (Reverse, Middle, Loop Detection, Length of Loop)",
+      "Step 6.3: LL Medium (Palindrome LL, Odd-Even, Remove Nth Node, Sort LL, Intersection)",
+      "Step 6.4: LL Hard (Reverse in K-Group, Rotate LL, Flatten LL, Clone LL with Random Ptr)",
+      "Step 7.1: Recursion & Subsequences (Generate Parentheses, Power Set, Combination Sum I & II)",
+      "Step 7.2: Backtracking Hard (Subset Sum, N-Queens, Sudoku Solver, Rat in Maze, Word Search)",
+      "Step 8: Bit Manipulation & Interview Tricks (XOR Range, Single Number III, Power Set)",
+      "Step 9.1: Stacks & Queues (Next Greater Element, Next Smaller, Trapping Rainwater)",
+      "Step 9.2: Monotonic Stack (Sum of Subarray Minimums, Asteroid Collision, Largest Rectangle Histogram)",
+      "Step 9.3: Stack Implementation Hard (Sliding Window Maximum, Stock Span, LRU & LFU Cache)",
+      "Step 10.1: Sliding Window & Two Pointers (Longest Substring No Repeat, Max Consecutive Ones III)",
+      "Step 10.2: Sliding Window Hard (Fruit Into Baskets, Binary Subarray Sum, Subarrays with K Distinct)",
+      "Step 11: Heaps / Priority Queue (Kth Largest, Merge K Sorted Lists, Task Scheduler, Median Stream)",
+      "Step 12: Greedy Algorithms (N Meetings, Jump Game I & II, Min Platforms, Job Sequencing, Candy)",
+      "Step 13.1: Binary Trees Traversals (Pre/In/Post Iterative, Level Order, ZigZag, Boundary Traversal)",
+      "Step 13.2: Binary Trees Medium (Height, Diameter, Max Path Sum, Vertical Order, Top/Bottom View)",
+      "Step 13.3: Binary Trees Hard (LCA, Max Width, Children Sum, Nodes at Distance K, Burn Tree)",
+      "Step 13.3: Binary Trees Hard (Count Complete Tree Nodes, Construct from Inorder+Preorder, Serialize)",
+      "Step 14.1: Binary Search Trees (Search, Ceil/Floor, Insert/Delete, Kth Smallest, Validate BST)",
+      "Step 14.2: BST Hard (LCA in BST, Construct from Preorder, BST Iterator, Two Sum in BST, Recover BST)",
+      "Step 15.1: Graphs BFS & DFS (Connected Components, Rotten Oranges, Flood Fill, Cycle Detection Undirected)",
+      "Step 15.2: Graphs Grid & Bipartite (0/1 Matrix, Surrounded Regions, Number of Enclaves, Word Ladder I & II)",
+      "Step 15.3: Topological Sort & Kahn's Algorithm (Cycle in Directed Graph, Course Schedule I & II, Alien Dict)",
+      "Step 15.4: Shortest Path in Graphs (Dijkstra Priority Queue, Shortest Path in Binary Maze, Path Min Effort)",
+      "Step 15.4: Shortest Path Advanced (Cheapest Flights K Stops, Bellman-Ford, Floyd Warshall, City Threshold)",
+      "Step 15.5: Minimum Spanning Tree & Disjoint Set (Prim's, Kruskal's, Union by Rank/Size, Accounts Merge)",
+      "Step 15.6: Advanced Graphs (Number of Islands II, Making a Large Island, Bridges in Graph Tarjan's, Kosaraju)",
+      "Step 16.1: Dynamic Programming 1D (Climbing Stairs, Frog Jump K, House Robber I & II)",
+      "Step 16.2: DP on Grids (Ninja's Training, Unique Paths I & II, Min Path Sum, Triangle, Cherry Pickup II)",
+      "Step 16.3: DP on Subsequences (Subset Sum Equal K, Partition Equal Subset, Target Sum, Coin Change I & II)",
+      "Step 16.4: DP on Strings (Longest Common Subsequence, Longest Palindromic Subseq, Edit Distance, Wildcard)",
+      "Step 16.5: DP on Stocks (Best Time Buy/Sell II, III, IV, with Cooldown, with Transaction Fee)",
+      "Step 16.6: Longest Increasing Subsequence (LIS Binary Search, Largest Divisible Subset, Longest String Chain)",
+      "Step 16.7: MCM & Partition DP (Matrix Chain Multiplication, Burst Balloons, Palindrome Partitioning II)",
+      "Step 17: Tries & Final Striver Revision (Implement Trie II, Max XOR of Two Numbers, Offline Queries)"
     ];
 
-    // Flatten into 84 Day objects
-    const allDays = [];
-    weeklyBlueprint.forEach(w => {
-      w.days.forEach((d, idx) => {
-        const dayNum = (w.week - 1) * 7 + (idx + 1);
-        const isWeekend = idx >= 5;
-        const isMilestone = (w.week % 3 === 0) && (idx === 5 || idx === 6);
-        allDays.push({
-          day: dayNum,
-          week: w.week,
-          phase: w.phase,
-          weekTheme: w.theme,
-          dayLabel: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][idx],
-          hours: isWeekend ? 4.0 : 1.25,
-          isWeekend,
-          isMilestone,
-          title: d[0],
-          task: d[1],
-          resource: d[2]
-        });
-      });
-    });
+    // Generate all 168 Days starting Friday, Oct 23, 2026
+    const startDate = new Date(2026, 9, 23); // Month is 0-indexed (9 = October)
+    const quiz1Date = new Date(2026, 10, 15); // Nov 15, 2026
+    const quiz2Date = new Date(2026, 11, 5);  // Dec 5, 2026
+    const endTermDate = new Date(2027, 0, 10); // Jan 10, 2027
 
-    const STORAGE_KEY = "genai_84day_os_v1";
+    const baseDays = [];
+
+    for (let i = 0; i < 168; i++) {
+      const dayNum = i + 1;
+      const currDate = new Date(startDate);
+      currDate.setDate(startDate.getDate() + i);
+
+      const weekNum = Math.floor(i / 7) + 1;
+      const monthNum = Math.ceil(weekNum / 4);
+      const dayOfWeek = currDate.getDay(); // 0=Sun, 6=Sat
+      const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+      const dateStr = currDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      const dayName = currDate.toLocaleDateString("en-US", { weekday: "short" });
+      const isoDate = currDate.toISOString().split("T")[0];
+
+      // 1. Determine Morning Block (Striver DSA Oct 23-Dec 13 -> Revision -> System Design -> Backend -> Mock Interviews)
+      let block1 = {};
+      if (i < 52) {
+        block1 = {
+          tag: "DSA (Striver)",
+          cls: "lbl-dsa",
+          text: `${isWeekend ? "[2.5–3h Weekend Deep Block]" : "[1.5–2h @ 1.5x + Notes]"} ${striverTopics[i]} (<a href="https://youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank">Striver Playlist ↗</a>)`
+        };
+      } else if (i < 80) {
+        block1 = {
+          tag: "DSA Revision & IITM",
+          cls: "lbl-dsa",
+          text: `45m Striver Blind-75 / Weak-Topic Revision + Extra 45m shifted to IITM End-Term Problem Sets`
+        };
+      } else if (i < 112) {
+        const sysTopics = [
+          "Gaurav Sen System Design Playlist (Load Balancing, Consistent Hashing, Caching, Sharding)",
+          "Udemy System Design (LLD + HLD): SOLID Principles, Factory/Strategy/Observer Patterns & UML",
+          "Exponent System Design Playlist: High-Scale Architecture Walkthroughs & Trade-offs",
+          "AI System Design (Codebasics + Siddhan Pande): Gateways, Semantic Cache, CDC, Guardrails"
+        ];
+        const pick = sysTopics[Math.floor((i - 80) / 8) % sysTopics.length];
+        block1 = {
+          tag: "System Design (HLD/LLD)",
+          cls: "lbl-sys",
+          text: `[90m Morning Block] ${pick} (<a href="https://youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX" target="_blank">Gaurav Sen ↗</a> · <a href="https://youtube.com/playlist?list=PLrtCHHeadkHp92TyPt1Fj452_VGLipJnL" target="_blank">Exponent ↗</a>)`
+        };
+      } else if (i < 140) {
+        const hnasrTopics = [
+          "Hussein Nasser (@hnasr): Backend Engineering Beginner & Intermediate Playlists",
+          "Hussein Nasser (@hnasr): PubSub, Message Queues (Kafka/RabbitMQ) & Load Balancing",
+          "Hussein Nasser (@hnasr): Distributed Systems, Database Internals & Network Engineering (TCP/TLS/HTTP3)"
+        ];
+        const pick = hnasrTopics[Math.floor((i - 112) / 10) % hnasrTopics.length];
+        block1 = {
+          tag: "Backend (@hnasr)",
+          cls: "lbl-sys",
+          text: `[90m Morning Block] ${pick} (<a href="https://www.youtube.com/@hnasr/playlists" target="_blank">@hnasr Playlists ↗</a>)`
+        };
+      } else {
+        block1 = {
+          tag: "Hello Interview + Mocks",
+          cls: "lbl-sys",
+          text: `[90m Morning Block] Hello Interview Premium Subscription: Timed HLD/LLD & AI System Design Mock Practice + Striver Hard Revision`
+        };
+      }
+
+      // 2. Determine IITM / Pre-Standup / Post-Standup Office Block (With 3-Week Exam Buffers)
+      let block2 = {};
+      let isExamBuffer = false;
+      let isExamDay = false;
+      let examBadge = "";
+
+      if (isoDate === "2026-11-15") {
+        isExamDay = true; isExamBuffer = true; examBadge = "🎯 IITM QUIZ 1 TODAY";
+        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 1 EXAM DAY (Nov 15):</strong> Deep Learning, AI & Corporate Finance. Pause heavy coding & ace the exam!" };
+      } else if (isoDate === "2026-12-05") {
+        isExamDay = true; isExamBuffer = true; examBadge = "🎯 IITM QUIZ 2 TODAY";
+        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 2 EXAM DAY (Dec 5):</strong> Deep Learning, AI & Corporate Finance. Full exam focus!" };
+      } else if (isoDate === "2027-01-10") {
+        isExamDay = true; isExamBuffer = true; examBadge = "🎓 IITM END-TERM TODAY";
+        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>END-TERM EXAM DAY (Jan 10, 2027):</strong> Final Semester Exams for Deep Learning, AI & Corporate Finance!" };
+      } else if (currDate < quiz1Date) {
+        isExamBuffer = true; examBadge = "📚 Quiz 1 Buffer";
+        const subj = ["Deep Learning (CNNs/Backprop/Optimization)", "Artificial Intelligence (Search/Heuristics/Logic)", "Corporate Finance (NPV/IRR/Bond & Equity Valuation)"][i % 3];
+        block2 = { tag: "IITM 3-Wk Quiz 1 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Lecture notes, graded assignments & Quiz 1 mock problems.` };
+      } else if (currDate < quiz2Date) {
+        isExamBuffer = true; examBadge = "📚 Quiz 2 Buffer";
+        const subj = ["Deep Learning (RNNs/LSTMs/Attention/Transformers)", "Artificial Intelligence (Probabilistic Reasoning/MDPs/RL)", "Corporate Finance (CAPM/WACC/Capital Structure)"][i % 3];
+        block2 = { tag: "IITM 3-Wk Quiz 2 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Intensive Quiz 2 PYQs & numerical derivations.` };
+      } else if (currDate < endTermDate) {
+        isExamBuffer = (i >= 58); // Dec 20 - Jan 10 is strict 3-week End-Term buffer
+        examBadge = isExamBuffer ? "🔥 End-Term 3-Wk Buffer" : "📘 IITM Coursework";
+        const subj = ["Deep Learning Full Syllabus & PYQs", "AI Full Syllabus & PYQs", "Corporate Finance Full Case Studies & Formulas"][i % 3];
+        block2 = { tag: isExamBuffer ? "IITM End-Term Blitz" : "IITM Coursework", cls: "lbl-iitm", text: `[${isExamBuffer ? "2h Intensive Exam Block" : "1h Conf Room Block"}] <strong>${subj}</strong>.` };
+      } else {
+        // Post Jan 10, 2027 -> Next IITM Sem + AWS MLU Catalog
+        block2 = {
+          tag: "AWS MLU & IITM Sem",
+          cls: "lbl-iitm",
+          text: `[1h Conf Room Study Block] Complete modules from <a href="https://portal.mlu.aws.dev/course-catalog/" target="_blank">AWS MLU Course Catalog ↗</a> + Next IITM Semester Weekly Lectures.`
+        };
+      }
+
+      // 3. Determine GenAI / Full-Stack / Weekend Krish Naik Block
+      let block3 = {};
+      if (i < 10) {
+        // Days 1-10: The 10-Day Playlist (2 hrs / day at 2x)
+        block3 = {
+          tag: `10-Day Playlist (Day ${i + 1}/10)`,
+          cls: "lbl-genai",
+          text: `[1 hr actual time = 2h content @ 2x] Complete Day ${i + 1} of <a href="https://youtube.com/playlist?list=PL6W8uoQQ2c63f469AyV78np0rbxRFppkx" target="_blank">Target Playlist ↗</a> + summarize key patterns.`
+        };
+      } else if (i >= 10 && i < 14) {
+        // Days 11-14: Agentic AI Crash Course (2.5 hrs + notes + 2 projects)
+        block3 = {
+          tag: "Agentic AI Crash Course",
+          cls: "lbl-genai",
+          text: `[Code + Notes] <a href="https://youtu.be/D74el9mvNak" target="_blank">Agentic AI Crash Course (Codebasics) ↗</a> — Build Rufus-style Multimodal Shopping Agent & 3-Source Telecom RAG.`
+        };
+      } else if (i >= 14 && i < 17) {
+        // Days 15-17: Claude Code Crash Course (2 hrs) + AI System Design (45m)
+        block3 = {
+          tag: "Claude Code + AI SysDesign",
+          cls: "lbl-genai",
+          text: `Master <a href="https://youtu.be/TAKDIvvUdc4" target="_blank">Claude Code Crash Course (Sub-agents, Agent Teams, Skills) ↗</a> & <a href="https://youtu.be/S6jy0T85DFs" target="_blank">AI System Design Tutorial ↗</a>.`
+        };
+      } else if (i >= 17 && i < 23) {
+        // Quiz 1 Final Crunch Days (Nov 9 - Nov 14): Light GenAI, prioritize IITM Quiz 1
+        block3 = {
+          tag: "Quiz 1 Protection Mode",
+          cls: "lbl-iitm",
+          text: `Light GenAI code review only — allocate evening energy to IITM DL, AI & Corporate Finance Quiz 1 revision.`
+        };
+      } else if (i >= 24 && i < 42) {
+        // Nov 16 - Dec 3: Complete Agentic AI Course (10.5 hrs + notes)
+        const modules = [
+          "Module 1: LangChain v1 Updates, uv Package Manager, Create Agent & Tool Loops",
+          "Module 2: Multi-Model Integration (OpenAI, Gemini, Groq), Streaming, Batch & Structured Pydantic Outputs",
+          "Module 3: LangChain Middlewares (Summarization Middleware, Token/Fraction Triggers, HITL Approval)",
+          "Module 4: Complete LangGraph Crash Course (StateGraph, Nodes, Conditional Edges, ReAct Loops, Checkpointers)",
+          "Module 5: Building Custom MCP Servers (FastMCP, stdio vs Streamable HTTP) & Multi-Server Clients",
+          "Module 6: Production Modular RAG Pipeline (FAISS/Chroma, Document Loaders, Citations) & Vectorless RAG (PageIndex)",
+          "Module 7: Deep Agents Architecture, PII/Custom Guardrails, LangSmith LLM-as-a-Judge Evals & LiteLLM Gateways"
+        ];
+        const modText = modules[(i - 24) % modules.length];
+        block3 = {
+          tag: "10.5h Agentic AI Course",
+          cls: "lbl-genai",
+          text: `${isWeekend ? "<strong>[Weekend Krish Naik Topic + Build]</strong> " : "[45m–1h + Notes] "}${modText} (<a href="https://youtu.be/rV3HJ4LEZ7k" target="_blank">10h Agentic AI Course ↗</a>)`
+        };
+      } else if (i >= 44 && i < 65) {
+        // Dec 7 - Dec 27: Andrej Karpathy Zero to Hero Neural Networks
+        const kTopics = [
+          "Karpathy Ep 1: Micrograd — Building Backpropagation & DAG Autograd Engine from Scratch",
+          "Karpathy Ep 2: Makemore Part 1 — Bigram Language Model & Torch Tensors",
+          "Karpathy Ep 3: Makemore Part 2 — MLP (Bengio et al.) Embeddings & Learning Rates",
+          "Karpathy Ep 4: Makemore Part 3 — Activations, Gradients & BatchNorm Internals",
+          "Karpathy Ep 5: Makemore Part 4 — Becoming a Backprop Ninja (Manual Backward Pass)",
+          "Karpathy Ep 6: Makemore Part 5 — Building WaveNet Hierarchical Dilated Convolutions",
+          "Karpathy Ep 7: Let's build GPT from Scratch — Self-Attention, Multi-Head Attention & Transformer",
+          "Karpathy Ep 8: Let's build the GPT Tokenizer — Byte-Pair Encoding (BPE) & tiktoken"
+        ];
+        block3 = {
+          tag: "Karpathy Zero-to-Hero",
+          cls: "lbl-genai",
+          text: `${isWeekend ? "<strong>[Weekend Krish Naik Video + Notebook]</strong> " : ""}${kTopics[(i - 44) % kTopics.length]} (<a href="https://youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">Karpathy Playlist ↗</a>)`
+        };
+      } else if (i >= 65 && i < 80) {
+        // Dec 28 - Jan 10: IITM End-Term Final Crunch
+        block3 = {
+          tag: isWeekend ? "IITM End-Term Mock + Krish Naik" : "IITM End-Term Deep Practice",
+          cls: "lbl-iitm",
+          text: isWeekend
+            ? `3h IITM End-Term Full Paper Simulation + 1h <a href="https://www.youtube.com/@krishnaik06/videos" target="_blank">Krish Naik Weekend Topic ↗</a>`
+            : `Dedicated evening block for IITM Deep Learning, AI & Corporate Finance End-Term Prep.`
+        };
+      } else if (i >= 80 && i < 120) {
+        // Jan 11 - Feb 19: Complete GenAI Course (Udemy) + Portfolio Milestones 1 & 2
+        block3 = {
+          tag: isWeekend ? "Krish Naik Weekend + Portfolio" : "Complete GenAI Udemy",
+          cls: "lbl-genai",
+          text: isWeekend
+            ? `<strong>[Weekend Sprint]</strong> Pick 1 new topic from <a href="https://www.youtube.com/@krishnaik06/videos" target="_blank">Krish Naik's Channel ↗</a> + Ship Hybrid/Vectorless RAG & Multi-Agent Portfolio Commits.`
+            : `[1h Build Block] Complete GenAI Course (Udemy) — Advanced Agentic Workflows, Fine-Tuning & AWS Bedrock Integration.`
+        };
+      } else if (i >= 120 && i < 150) {
+        // Feb 20 - Mar 21: React Udemy Course + Full-Stack AI Dashboards
+        block3 = {
+          tag: isWeekend ? "Krish Naik + React AI UI" : "React Udemy Course",
+          cls: "lbl-genai",
+          text: isWeekend
+            ? `<strong>[Weekend Sprint]</strong> Pick 1 topic from <a href="https://www.youtube.com/@krishnaik06/videos" target="_blank">Krish Naik ↗</a> + Build React Streaming UI for your LangGraph Agents.`
+            : `[1h Frontend Block] <a href="https://www.udemy.com/share/101Way3@MrAfeSYFK7nUKiPekrLkrgq5kLKmpEHg9h5i2AacWdLsziCww7eoJircbeR5cI-S7w==/" target="_blank">React Udemy Course ↗</a> — Hooks, State, SSE Token Streaming & Agent Trace Dashboards.`
+        };
+      } else {
+        // Mar 22 - Apr 8: Capstone Polish, LiteLLM Gateway, Docker & SDE-2 Readiness
+        block3 = {
+          tag: "Capstone & SDE-2 Launch",
+          cls: "lbl-genai",
+          text: isWeekend
+            ? `<strong>[Weekend Finale]</strong> <a href="https://www.youtube.com/@krishnaik06/videos" target="_blank">Krish Naik Topic ↗</a> + Record 2-min Loom Demos & Excalidraw System Diagrams for all 4 Flagship Repos.`
+            : `Containerize React + FastAPI + LangGraph + LiteLLM Gateway projects with LangSmith evals & README benchmarks.`
+        };
+      }
+
+      baseDays.push({
+        id: `day_${dayNum}`,
+        day: dayNum,
+        week: weekNum,
+        month: monthNum,
+        dateStr,
+        dayName,
+        isoDate,
+        isWeekend,
+        isExamBuffer,
+        isExamDay,
+        examBadge,
+        hours: isWeekend ? 5.5 : 3.25,
+        title: `Day ${dayNum}: ${block1.tag} · ${block3.tag}`,
+        blocks: [block1, block2, block3]
+      });
+    }
+
+    const STORAGE_KEY = "ruchira_6month_master_os_v1";
     let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
-      completed: {},
+      completedDays: {},
+      completedBlocks: {}, // key: "day_1_b0"
       notes: {},
-      freezesLeft: 3,
+      customDays: [],
+      freezesLeft: 5,
       frozenDays: {},
-      selectedWeek: "all",
+      selectedWeek: 1,
       theme: "dark"
     };
+
+    function getAllDays() {
+      return [...baseDays, ...(state.customDays || [])].sort((a, b) => a.day - b.day);
+    }
 
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -608,37 +924,60 @@
       document.documentElement.setAttribute("data-theme", state.theme || "dark");
     }
 
+    function updateCountdowns() {
+      const today = new Date();
+      const q1Diff = Math.ceil((quiz1Date - today) / (1000 * 60 * 60 * 24));
+      const q2Diff = Math.ceil((quiz2Date - today) / (1000 * 60 * 60 * 24));
+      const endDiff = Math.ceil((endTermDate - today) / (1000 * 60 * 60 * 24));
+      const parts = [];
+      if (q1Diff >= 0) parts.push(`Quiz 1: ${q1Diff}d`);
+      if (q2Diff >= 0) parts.push(`Quiz 2: ${q2Diff}d`);
+      if (endDiff >= 0) parts.push(`End-Term: ${endDiff}d`);
+      document.getElementById("countdownBanner").textContent = parts.length ? "⏳ IITM Countdowns — " + parts.join(" · ") : "🎓 IITM Exams Complete!";
+    }
+
     function updateStats() {
-      const doneDays = Object.keys(state.completed).filter(k => state.completed[k]);
+      const all = getAllDays();
+      const doneDays = all.filter(d => state.completedDays[d.id]);
       const count = doneDays.length;
-      const pct = Math.round((count / 84) * 100);
+      const total = all.length;
+      const pct = Math.round((count / total) * 100);
+
       document.getElementById("completedCount").textContent = count;
+      document.getElementById("totalDaysCount").textContent = total;
       document.getElementById("completedPct").textContent = pct + "%";
       document.getElementById("mainProgressBar").style.width = pct + "%";
 
-      let hours = 0;
-      doneDays.forEach(dNum => {
-        const item = allDays.find(x => x.day === Number(dNum));
-        if (item) hours += item.hours;
+      // DSA Days (Days 1-52)
+      let dsaDone = 0;
+      for (let i = 1; i <= 52; i++) {
+        if (state.completedDays[`day_${i}`] || state.completedBlocks[`day_${i}_b0`]) dsaDone++;
+      }
+      document.getElementById("dsaDoneCount").textContent = dsaDone;
+
+      // IITM Blocks
+      let iitmDone = 0;
+      all.forEach(d => {
+        if (state.completedDays[d.id] || state.completedBlocks[`${d.id}_b1`]) iitmDone++;
       });
+      document.getElementById("iitmDoneCount").textContent = iitmDone;
+
+      // Hours
+      let hours = 0;
+      doneDays.forEach(d => { hours += (d.hours || 3.25); });
       document.getElementById("hoursLogged").textContent = hours.toFixed(1);
 
-      // Milestones (Days 21, 42, 63, 84)
-      const milestoneDays = [21, 42, 63, 84];
-      const mDone = milestoneDays.filter(d => state.completed[d]).length;
-      document.getElementById("milestoneCount").textContent = mDone;
-
-      // Calculate Streak (consecutive completed or frozen days up to highest completed day)
+      // Streak
       let streak = 0;
-      let maxDay = 0;
-      for (let i = 84; i >= 1; i--) {
-        if (state.completed[i] || state.frozenDays[i]) {
-          maxDay = i;
+      let maxIdx = -1;
+      for (let i = all.length - 1; i >= 0; i--) {
+        if (state.completedDays[all[i].id] || state.frozenDays[all[i].id]) {
+          maxIdx = i;
           break;
         }
       }
-      for (let i = maxDay; i >= 1; i--) {
-        if (state.completed[i] || state.frozenDays[i]) streak++;
+      for (let i = maxIdx; i >= 0; i--) {
+        if (state.completedDays[all[i].id] || state.frozenDays[all[i].id]) streak++;
         else break;
       }
       document.getElementById("streakVal").textContent = streak;
@@ -651,18 +990,19 @@
 
       const allPill = document.createElement("button");
       allPill.className = "week-pill" + (state.selectedWeek === "all" ? " active" : "");
-      allPill.textContent = "All 12 Weeks";
+      allPill.textContent = "All 24 Weeks";
       allPill.onclick = () => { state.selectedWeek = "all"; renderDays(); renderWeekPills(); };
       container.appendChild(allPill);
 
-      for (let w = 1; w <= 12; w++) {
-        const weekDays = allDays.filter(d => d.week === w);
-        const allWeekDone = weekDays.every(d => state.completed[d.day]);
+      const all = getAllDays();
+      for (let w = 1; w <= 24; w++) {
+        const wDays = all.filter(d => d.week === w);
+        const wDone = wDays.length > 0 && wDays.every(d => state.completedDays[d.id]);
         const pill = document.createElement("button");
         pill.className = "week-pill" +
           (state.selectedWeek === w ? " active" : "") +
-          (allWeekDone ? " completed-week" : "");
-        pill.textContent = `Week ${w}` + (allWeekDone ? " ✓" : "");
+          (wDone ? " completed-week" : "");
+        pill.textContent = `W${w}` + (wDone ? " ✓" : "");
         pill.onclick = () => {
           state.selectedWeek = w;
           renderDays();
@@ -674,68 +1014,97 @@
 
     function renderDays() {
       const grid = document.getElementById("daysGrid");
-      const phaseVal = document.getElementById("phaseFilter").value;
+      const monthVal = document.getElementById("monthFilter").value;
       const statusVal = document.getElementById("statusFilter").value;
       const query = document.getElementById("searchInput").value.toLowerCase().trim();
 
       grid.innerHTML = "";
+      const all = getAllDays();
 
-      const filtered = allDays.filter(item => {
+      const filtered = all.filter(item => {
         if (state.selectedWeek !== "all" && item.week !== state.selectedWeek) return false;
-        if (phaseVal !== "all" && item.phase !== Number(phaseVal)) return false;
-        const isDone = !!state.completed[item.day];
+        if (monthVal !== "all" && item.month !== Number(monthVal)) return false;
+        const isDone = !!state.completedDays[item.id];
         if (statusVal === "todo" && isDone) return false;
         if (statusVal === "done" && !isDone) return false;
-        if (statusVal === "milestone" && !item.isMilestone) return false;
+        if (statusVal === "iitm" && !item.isExamBuffer) return false;
+        if (statusVal === "weekend" && !item.isWeekend) return false;
         if (query) {
-          const hay = `${item.title} ${item.task} ${item.resource} ${item.weekTheme}`.toLowerCase();
+          const blocksText = (item.blocks || []).map(b => `${b.tag} ${b.text}`).join(" ");
+          const hay = `${item.title} ${item.dateStr} ${item.examBadge} ${blocksText}`.toLowerCase();
           if (!hay.includes(query)) return false;
         }
         return true;
       });
 
       filtered.forEach(item => {
-        const isDone = !!state.completed[item.day];
-        const isFrozen = !!state.frozenDays[item.day];
+        const isDone = !!state.completedDays[item.id];
+        const isFrozen = !!state.frozenDays[item.id];
         const card = document.createElement("div");
-        card.id = `day-card-${item.day}`;
-        card.className = `day-card ${isDone ? "done" : ""} ${item.isMilestone ? "milestone-card" : ""}`;
+        card.id = `card_${item.id}`;
+        card.className = `day-card ${isDone ? "done" : ""} ${item.isExamDay ? "exam-day" : ""}`;
+
+        const blocksHtml = (item.blocks || []).map((b, bIdx) => {
+          const bKey = `${item.id}_b${bIdx}`;
+          const bChecked = isDone || !!state.completedBlocks[bKey];
+          return `
+            <div class="study-block">
+              <input type="checkbox" data-bkey="${bKey}" data-parent="${item.id}" ${bChecked ? "checked" : ""} />
+              <div class="block-content">
+                <div class="block-label ${b.cls}">${b.tag}</div>
+                <div>${b.text}</div>
+              </div>
+            </div>
+          `;
+        }).join("");
 
         card.innerHTML = `
           <div>
             <div class="day-top">
               <div class="day-badges">
-                <span class="tag">Day ${item.day} · W${item.week} (${item.dayLabel})</span>
-                <span class="tag ${item.isWeekend ? "weekend" : ""}">${item.isWeekend ? "Weekend 4h Build" : "Weekday 75m"}</span>
-                ${item.isMilestone ? `<span class="tag milestone">🚀 Milestone</span>` : ""}
+                <span class="tag date-tag">📅 ${item.dateStr} (${item.dayName})</span>
+                <span class="tag">Day ${item.day} · W${item.week}</span>
+                <span class="tag ${item.isWeekend ? "weekend" : ""}">${item.isWeekend ? "Weekend (~5.5h)" : "Weekday (~3.25h)"}</span>
+                ${item.examBadge ? `<span class="tag ${item.isExamDay ? "exam-tag" : "buffer-tag"}">${item.examBadge}</span>` : ""}
                 ${isFrozen ? `<span class="tag">🧊 Frozen</span>` : ""}
               </div>
               <label class="check-wrapper">
-                <input type="checkbox" ${isDone ? "checked" : ""} data-day="${item.day}" />
-                <span style="font-size:0.78rem;font-weight:600;">Done</span>
+                <input type="checkbox" class="master-day-check" data-id="${item.id}" ${isDone ? "checked" : ""} />
+                <span>Done</span>
               </label>
             </div>
             <div class="day-title">${item.title}</div>
-            <p class="day-desc" style="margin-top:6px;">${item.task}</p>
+            <div class="blocks-list">${blocksHtml}</div>
           </div>
-          <div>
-            <div class="resource-box">
-              <strong>📌 Resource / Target:</strong> ${item.resource}
-            </div>
-            <textarea class="day-notes" style="margin-top:8px;" placeholder="Add GitHub commit link, takeaway, or blocker..." data-note-day="${item.day}">${state.notes[item.day] || ""}</textarea>
-          </div>
+          <textarea class="day-notes" placeholder="Log notes, LeetCode/Striver count, or GitHub commit URL..." data-note-id="${item.id}">${state.notes[item.id] || ""}</textarea>
         `;
 
-        const checkbox = card.querySelector("input[type='checkbox']");
-        checkbox.addEventListener("change", (e) => {
-          state.completed[item.day] = e.target.checked;
+        // Master day checkbox
+        card.querySelector(".master-day-check").addEventListener("change", (e) => {
+          const checked = e.target.checked;
+          state.completedDays[item.id] = checked;
+          (item.blocks || []).forEach((_, idx) => {
+            state.completedBlocks[`${item.id}_b${idx}`] = checked;
+          });
           saveState();
           renderDays();
         });
 
-        const noteInput = card.querySelector("textarea");
-        noteInput.addEventListener("input", (e) => {
-          state.notes[item.day] = e.target.value;
+        // Individual block checkboxes
+        card.querySelectorAll(".study-block input[type='checkbox']").forEach(subCheck => {
+          subCheck.addEventListener("change", (e) => {
+            const bKey = e.target.getAttribute("data-bkey");
+            state.completedBlocks[bKey] = e.target.checked;
+            const allSubDone = (item.blocks || []).every((_, idx) => state.completedBlocks[`${item.id}_b${idx}`]);
+            state.completedDays[item.id] = allSubDone;
+            saveState();
+            renderDays();
+          });
+        });
+
+        // Notes
+        card.querySelector(".day-notes").addEventListener("input", (e) => {
+          state.notes[item.id] = e.target.value;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         });
 
@@ -743,10 +1112,18 @@
       });
     }
 
-    // Event Listeners
-    document.getElementById("phaseFilter").addEventListener("change", renderDays);
+    // Filter & Button Listeners
+    document.getElementById("monthFilter").addEventListener("change", (e) => {
+      state.selectedWeek = "all";
+      renderWeekPills();
+      renderDays();
+    });
     document.getElementById("statusFilter").addEventListener("change", renderDays);
-    document.getElementById("searchInput").addEventListener("input", renderDays);
+    document.getElementById("searchInput").addEventListener("input", () => {
+      state.selectedWeek = "all";
+      renderWeekPills();
+      renderDays();
+    });
 
     document.getElementById("themeBtn").addEventListener("click", () => {
       state.theme = state.theme === "dark" ? "light" : "dark";
@@ -755,44 +1132,92 @@
     });
 
     document.getElementById("freezeBtn").addEventListener("click", () => {
-      if (state.freezesLeft <= 0) {
-        alert("No streak freezes remaining!");
-        return;
-      }
-      const nextDay = allDays.find(d => !state.completed[d.day] && !state.frozenDays[d.day]);
-      if (!nextDay) return;
-      state.frozenDays[nextDay.day] = true;
+      if (state.freezesLeft <= 0) return alert("No streak freezes left!");
+      const next = getAllDays().find(d => !state.completedDays[d.id] && !state.frozenDays[d.id]);
+      if (!next) return;
+      state.frozenDays[next.id] = true;
       state.freezesLeft -= 1;
       saveState();
       renderDays();
     });
 
-    document.getElementById("jumpNextBtn").addEventListener("click", () => {
-      state.selectedWeek = "all";
-      document.getElementById("phaseFilter").value = "all";
-      document.getElementById("statusFilter").value = "all";
-      document.getElementById("searchInput").value = "";
+    document.getElementById("jumpTodayBtn").addEventListener("click", () => {
+      const todayIso = new Date().toISOString().split("T")[0];
+      const match = getAllDays().find(d => d.isoDate === todayIso) || getAllDays()[0];
+      state.selectedWeek = match.week;
       renderWeekPills();
       renderDays();
-      const nextDay = allDays.find(d => !state.completed[d.day]);
-      if (nextDay) {
-        const el = document.getElementById(`day-card-${nextDay.day}`);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
+      const el = document.getElementById(`card_${match.id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("jumpNextBtn").addEventListener("click", () => {
+      const next = getAllDays().find(d => !state.completedDays[d.id]);
+      if (!next) return;
+      state.selectedWeek = next.week;
+      renderWeekPills();
+      renderDays();
+      const el = document.getElementById(`card_${next.id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    // Dynamic Topic Modal
+    const modal = document.getElementById("topicModal");
+    document.getElementById("openModalBtn").addEventListener("click", () => { modal.style.display = "flex"; });
+    document.getElementById("closeModalBtn").addEventListener("click", () => { modal.style.display = "none"; });
+
+    document.getElementById("confirmAddBtn").addEventListener("click", () => {
+      const title = document.getElementById("modalTopicInput").value.trim();
+      const url = document.getElementById("modalUrlInput").value.trim() || "https://www.youtube.com/@krishnaik06/videos";
+      const week = Number(document.getElementById("modalWeekSelect").value);
+      if (!title) return alert("Please enter a topic title.");
+
+      const newDayNum = getAllDays().length + 1;
+      const customDay = {
+        id: `custom_${Date.now()}`,
+        day: newDayNum,
+        week,
+        month: Math.ceil(week / 4),
+        dateStr: `Dynamic W${week}`,
+        dayName: "Flex",
+        isoDate: "",
+        isWeekend: true,
+        isExamBuffer: false,
+        isExamDay: false,
+        examBadge: "✨ Dynamic Topic",
+        hours: 2.0,
+        title: `Dynamic Addition: ${title}`,
+        blocks: [
+          {
+            tag: "Dynamic AI Module",
+            cls: "lbl-genai",
+            text: `Hands-on study & implementation of <strong>${title}</strong> (<a href="${url}" target="_blank">Open Resource ↗</a>)`
+          }
+        ]
+      };
+
+      if (!state.customDays) state.customDays = [];
+      state.customDays.push(customDay);
+      state.selectedWeek = week;
+      modal.style.display = "none";
+      document.getElementById("modalTopicInput").value = "";
+      saveState();
+      renderDays();
     });
 
     document.getElementById("exportBtn").addEventListener("click", () => {
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
       const a = document.createElement("a");
       a.setAttribute("href", dataStr);
-      a.setAttribute("download", "genai_84day_progress.json");
+      a.setAttribute("download", "6month_genai_dsa_iitm_backup.json");
       document.body.appendChild(a);
       a.click();
       a.remove();
     });
 
-    // Init
+    // Initialize
     applyTheme();
+    updateCountdowns();
     updateStats();
     renderWeekPills();
     renderDays();

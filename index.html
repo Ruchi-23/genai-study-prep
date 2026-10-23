@@ -162,7 +162,7 @@
           ⚡ 6-Month Master SDE & GenAI OS
           <span class="badge">168 Days · Oct 23, 2026 – Apr 8, 2027</span>
         </h1>
-        <p>Amazon SDE-1 + IITM (DL, AI, Finance) + Striver DSA + Hussein Nasser Backend + Complete GenAI (54h) + LLD/HLD (38.5h)</p>
+        <p>Amazon SDE-1 + IITM (DL, AI, Finance) + Striver DSA + Hussein Nasser Backend Playlists + Complete GenAI (54h) + LLD/HLD (38.5h)</p>
       </div>
       <div class="header-actions">
         <button id="openModalBtn" class="btn-primary">✨ + Add Live Topic</button>
@@ -175,10 +175,10 @@
       </div>
     </header>
 
-    <!-- Master Quick-Launch Dock -->
+    <!-- Master Resource Quick-Launch Dock -->
     <section class="resource-dock">
       <div class="dock-title">
-        <span>📌 Primary Resource Portals</span>
+        <span>📌 Primary Playlists & Direct Portals</span>
         <span id="countdownBanner" style="color:var(--exam);"></span>
       </div>
       <div class="dock-links">
@@ -190,7 +190,9 @@
         <a class="dock-pill" href="https://portal.mlu.aws.dev/course-catalog/" target="_blank">☁️ AWS MLU Catalog</a>
         <a class="dock-pill" href="https://youtu.be/TtPXvEcE11E" target="_blank">⚛️ React Full Course (freeCodeCamp)</a>
         <a class="dock-pill" href="https://youtu.be/TAKDIvvUdc4" target="_blank">🛠️ Claude Code Crash Course</a>
-        <a class="dock-pill" href="https://www.youtube.com/@hnasr/playlists" target="_blank">🌐 Hussein Nasser Backend Playlists</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" target="_blank">🌐 @hnasr Backend Beginner</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" target="_blank">🌐 @hnasr Backend Intermediate</a>
+        <a class="dock-pill" href="https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" target="_blank">🌐 @hnasr Backend Advanced</a>
       </div>
     </section>
 
@@ -218,15 +220,15 @@
       </div>
     </section>
 
-    <!-- Filters & Controls -->
+    <!-- Controls -->
     <section class="controls-bar">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
         <select id="monthFilter">
           <option value="all">All 6 Months (Weeks 1–24)</option>
           <option value="1">Month 1 (W1–W4): Striver DSA + Java Refresher + Agentic Crash + Quiz 1</option>
-          <option value="2">Month 2 (W5–W8): Striver Trees/DP + 10.5h Agentic AI + Quiz 2</option>
+          <option value="2">Month 2 (W5–W8): Striver Trees/Graphs/DP + 10.5h Agentic AI + Quiz 2</option>
           <option value="3">Month 3 (W9–W12): Karpathy Zero-to-Hero + IITM End-Term Blitz (Jan 10)</option>
-          <option value="4">Month 4 (W13–W16): Hussein Nasser Backend (Networking/Protocols) + MLU</option>
+          <option value="4">Month 4 (W13–W16): Hussein Nasser Backend Sequences + AWS MLU</option>
           <option value="5">Month 5 (W17–W20): Krish Naik 54h Complete GenAI (at 1.5x) + LLD/HLD 38.5h</option>
           <option value="6">Month 6 (W21–W24): React Masterclass + Claude Code + Capstones</option>
         </select>
@@ -257,7 +259,7 @@
     <div class="modal">
       <h3>✨ Live AI Topic & Resource Finder</h3>
       <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;">
-        Query live GitHub repos and developer docs to attach fresh AI developments directly into your schedule.
+        Query live GitHub repos and developer resources to attach fresh AI developments directly into your schedule.
       </p>
 
       <label>1. Topic or Framework Title:</label>
@@ -361,50 +363,55 @@
       "Step 17: Tries & Final Striver Revision (Implement Trie II, Max XOR of Two Numbers, Offline Queries)"
     ];
 
-    // Hussein Nasser Backend Engineering Daily Roadmap (42 Daily Micro-Units)
+    // EXACT Video Titles from Hussein Nasser's Beginner, Intermediate, and Advanced Playlists
     const hnasrSyllabus = [
-      "Backend Fundamentals: Client-Server Architecture, OS Process Model & Sockets",
-      "Transport Layer: TCP Handshake, Sliding Window, TCP Reset & Slow Start",
-      "Transport Layer: UDP Architecture, Head-of-Line Blocking & QUIC Protocol",
-      "Application Protocols: HTTP/1.1 Pipelining vs Keep-Alive Connections",
-      "Application Protocols: HTTP/2 Multiplexing, Binary Framing & Stream Priorities",
-      "Application Protocols: HTTP/3 over QUIC, 0-RTT Connection Resumption",
-      "WebSockets: Full-Duplex Socket Connections & Protocol Upgrades",
-      "gRPC & Protobuf: Binary Serialization, HTTP/2 Channels & Streaming APIs",
-      "TLS/SSL Deep Dive: Symmetric vs Asymmetric Crypto, Handshake & Session Resumption",
-      "TLS Internals: SNI (Server Name Indication), Certificates & Cipher Suites",
-      "Reverse Proxies vs Forward Proxies: Architecture, Caching & Header Forwarding",
-      "Load Balancing Layer 4 (Transport/IP Hash) vs Layer 7 (Application/Path Routing)",
-      "Load Balancing Algorithms: Round Robin, Least Connections, Weighted & Consistent Hashing",
-      "Database Engines: Row-oriented (Postgres/MySQL) vs Columnar Storage Internals",
-      "Database Indexing: B-Trees vs B+ Trees Internals & Range Scans",
-      "Database Indexing: LSM-Trees (Log-Structured Merge Trees) in Cassandra/SSTables",
-      "Database Concurrency: ACID, Isolation Levels (Read Committed, Repeatable, Serializable)",
-      "Database Internals: MVCC (Multi-Version Concurrency Control) & Write Amplification",
-      "Database Internals: Write-Ahead Logging (WAL) & Crash Recovery Mechanisms",
-      "Database Scaling: Connection Pooling (PgBouncer) & Thread-per-Connection vs Event Loop",
-      "Database Scaling: Read Replicas, Replication Lag & Distributed Quorums",
-      "Database Sharding: Hash-based vs Range-based Sharding & Resharding Bottlenecks",
-      "Caching Systems: Cache-Aside, Write-Through, Write-Behind & Cache Penetration/Stampede",
-      "Redis Internals: Single-Threaded Event Loop, Redis Data Structures & In-Memory Persistence",
-      "PubSub & Message Brokers: Fan-out, Queue Semantics & At-least-once vs Exactly-once",
-      "Kafka Architecture: Partitions, Consumer Groups, Offsets & Commit Log Mechanics",
-      "Kafka Internals: Zero-Copy OS Optimization & Page Cache Utilization",
-      "RabbitMQ Internals: AMQP Protocol, Exchanges, Queues & Dead Letter Routing",
-      "Long Polling, Server-Sent Events (SSE) vs WebSockets Trade-off Matrix",
-      "API Gateways: Rate Limiting Algorithms (Token Bucket, Leaky Bucket, Sliding Window Counter)",
-      "Backend Security: CORS Preflight Demystified & CSRF Tokens vs SameSite Cookies",
-      "Backend Security: JWT Internals, Replay Attacks, Symmetric HMAC vs Asymmetric RSA",
-      "Distributed Systems: CAP Theorem, PACELC & Linearizability",
-      "Distributed Systems: Two-Phase Commit (2PC) & Saga Pattern for Microservices",
-      "Distributed Systems: Leader Election (Raft Consensus & Paxos Overview)",
-      "Distributed Systems: Distributed Locking via Redis (Redlock) & Zookeeper",
-      "Backend Performance: Profiling Memory Leaks, CPU Flamegraphs & Garbage Collection",
-      "Backend Networking: epoll vs select vs kqueue Asynchronous I/O Event Multiplexing",
-      "Linux Kernel Networking: TCP Backlog Queue, SYN Floods & SO_REUSEPORT",
-      "Microservices Communication: Service Mesh (Envoy/Istio) Sidecars vs Central Proxies",
-      "Observability Architecture: Distributed Tracing (OpenTelemetry/Jaeger) & Trace Contexts",
-      "Final Backend Synthesis: Building an Ultra Low-Latency Event-Driven Microservice"
+      // Beginner Playlist (PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT)
+      { title: "How to Become a Good Backend Engineer (Fundamentals)", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Advice for Beginner Backend Engineers in Software Companies", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "The OSI Model - Explained by Example", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "The OSI Model by Example - Backend Engineering Show", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "TCP vs UDP Crash Course", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Hyper Text Transfer Protocol Crash Course - HTTP 1.0, 1.1, HTTP/2, HTTP/3", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "What Are Web Servers and How Do They Work (httpd and nodejs)", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Symmetrical vs Asymmetrical Encryption Pros and Cons by Example", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Transport Layer Security, TLS 1.2 and 1.3 (Explained by Example)", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Proxy vs Reverse Proxy Server Explained", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "I Ask This Question to Every Backend Engineer I Interview", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Primary Key vs Secondary Key - What You Probably Didn't Know", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "B-Tree vs B+Tree in Production Database Systems", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "My Process of Designing and Architecting Software", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Asynchronous vs Multithreading and Multiprocessing Programming", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "XMPP - Extensible Messaging and Presence Protocol (Node JS & eJabberd)", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Percentile Tail Latency Explained (95%, 99%) Monitor Backend Performance", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Load Balancing Server-Sent Events (SSE) Backends with Round Robin", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Building an Upload Backend Service with Vanilla JS Progress", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+      { title: "Backend Leaking Postgres Database Connections - How to Fix It", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
+
+      // Intermediate Playlist (PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs)
+      { title: "What is the TCP 3-Way Handshake and Why Backend Engineers Should Understand It", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "Layer 4 vs Layer 7 Proxying in Details Explained with Examples", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "Database Engines Crash Course (MyISAM, Aria, InnoDB, XtraDB, LevelDB, RocksDB)", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "Enable HTTP/2 and TLS 1.3 on Apache Tomcat with Let's Encrypt", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "HTTP/2 Critical Limitation that Led to HTTP/3 & QUIC", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "When Indexes Are Useless | The Backend Engineering Show", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "Partial Indexing | The Backend Engineering Show", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "The Cost of Hash Tables | The Backend Engineering Show", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "A Deep Dive into How Slow SELECT * Is", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "Column vs Row Oriented Databases Explained", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "They Enabled Postgres Partitioning and Their Backend Fell Apart", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+      { title: "When Should You Shard Your Database?", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
+
+      // Advanced Playlist (PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ)
+      { title: "Database Replication Crash Course (with Postgres 13)", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "How Database Cursors Help in Fetching Large Result Sets from SQL", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Relational Database ACID Transactions (Explained by Example)", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Key vs Non-Key Column Database Indexing", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Port Forwarding with NAT and iptables (Transparent Proxying)", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Load Balancing in Layer 4 vs Layer 7 with HAProxy Examples", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "WebSockets Crash Course - Handshake, Use-cases, Pros & Cons", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Scaling WebSockets with Redis, HAProxy & Node JS", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "RabbitMQ Crash Course & Message Broker Architecture", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
+      { title: "Kafka Architecture & Streaming Log Internals", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" }
     ];
 
     // Calendar Anchors
@@ -428,23 +435,24 @@
       const dayName = currDate.toLocaleDateString("en-US", { weekday: "short" });
       const isoDate = currDate.toISOString().split("T")[0];
 
-      // BLOCK 1: Morning Foundation (Striver DSA Oct 23-Dec 13 -> Hussein Nasser Backend Dec 14-Jan 24 -> System Design LLD/HLD)
+      // BLOCK 1: Morning Foundation (Striver DSA Oct 23-Dec 13 -> Hussein Nasser Dec 14-Jan 24 -> System Design LLD/HLD)
       let block1 = {};
       if (i < 52) {
         block1 = {
           tag: "Striver DSA",
           cls: "lbl-dsa",
-          text: `${isWeekend ? "[2.5–3h Deep Weekend Practice]" : "[1.5–2h @ 1.5x with Notes]"} ${striverTopics[i]} (<a href="https://youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank">Playlist ↗</a>)`
+          text: `${isWeekend ? "[2.5–3h Deep Weekend Practice]" : "[1.5–2h @ 1.5x with Notes]"} ${striverTopics[i]} (<a href="https://youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank">Striver Playlist ↗</a>)`
         };
       } else if (i < 94) {
         const hIdx = i - 52;
+        const item = hnasrSyllabus[hIdx % hnasrSyllabus.length];
         block1 = {
-          tag: "Backend (@hnasr)",
+          tag: `@hnasr (${item.pl})`,
           cls: "lbl-sys",
-          text: `[90m Morning Block] ${hnasrSyllabus[hIdx % hnasrSyllabus.length]} (<a href="https://www.youtube.com/@hnasr/playlists" target="_blank">@hnasr Playlists ↗</a>)`
+          text: `[90m Morning Block] <strong>${item.title}</strong> (<a href="${item.url}" target="_blank">${item.pl} Playlist ↗</a>)`
         };
       } else {
-        // Day 95 to 168: System Design (LLD + HLD) - Udemy 38.5 hrs (at 1.5x = ~25.5 hours actual = ~30 mins daily)
+        // Day 95 to 168: System Design (LLD + HLD) - Udemy 38.5 hrs (at 1.5x = ~25.5h actual)
         const sysModules = [
           "HLD: Requirements Clarification, Capacity Estimations & High-Level Block Diagrams",
           "HLD: Relational vs NoSQL Storage, Sharding Keys & Consistent Hashing Rings",
@@ -498,7 +506,6 @@
         const subj = ["Deep Learning End-Term Comprehensive Revision", "Artificial Intelligence End-Term Theory & Proofs", "Corporate Finance Complete Formula & Case Study Blitz"][i % 3];
         block2 = { tag: isExamBuffer ? "IITM End-Term Blitz" : "IITM Coursework", cls: "lbl-iitm", text: `[${isExamBuffer ? "2h Conf Room Exam Block" : "1h Study Block"}] <strong>${subj}</strong>.` };
       } else {
-        // Post Jan 10: Next IITM term + AWS MLU Courses
         block2 = {
           tag: "AWS MLU & IITM Term",
           cls: "lbl-iitm",
@@ -577,7 +584,7 @@
           text: `Dedicated evening exam block for IITM Deep Learning, AI & Corporate Finance End-Term Preparation.`
         };
       } else if (i >= 79 && i < 129) {
-        // Jan 11 - Mar 1: Complete GenAI Course [54 hrs] Krish Naik - Udemy (at 1.5x = 36h actual = ~45-50 mins/day)
+        // Jan 11 - Mar 1: Complete GenAI Course [54 hrs] Krish Naik - Udemy (at 1.5x = 36h actual)
         const genaiUdemyUnits = [
           "Python Advanced Refresher, Asyncio & Environment Toolchains for GenAI",
           "OpenAI API, Claude API & Hugging Face Transformers Deep Dive",
@@ -596,7 +603,7 @@
           text: `[45–60m @ 1.5x] Krish Naik Udemy GenAI Course: ${genaiUdemyUnits[gIdx]}`
         };
       } else if (i >= 129 && i < 150) {
-        // Mar 2 - Mar 23: React Full Course (freeCodeCamp / Scrimba - youtu.be/TtPXvEcE11E)
+        // Mar 2 - Mar 23: React Full Course (freeCodeCamp - youtu.be/TtPXvEcE11E)
         const reactUnits = [
           "React Basics: JSX, Functional Components, Props & Rendering Lists",
           "State Management: useState, Controlled Inputs & Form Handling",
@@ -645,7 +652,7 @@
       });
     }
 
-    const STORAGE_KEY = "ruchira_master_os_168_v2";
+    const STORAGE_KEY = "ruchira_master_os_168_v3";
     let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
       completedDays: {},
       completedBlocks: {},

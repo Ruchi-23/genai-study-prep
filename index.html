@@ -1,1 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenAI Zero-to-Pro | 84-Day Interactive Study OS</title>
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #131b2e;
+      --surface-hover: #1c2742;
+      --border: #263354;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --milestone: #ec4899;
+      --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
 
+    :root[data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --success: #059669;
+      --warning: #d97706;
+      --milestone: #db2777;
+      --card-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
+    }
+
+    .brand h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-sde {
+      font-size: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .brand p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button, select, input[type="text"] {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:hover, select:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    /* KPI Stats Bar */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin: 6px 0 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Controls & Week Selector */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+    }
+
+    .week-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .week-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .week-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .week-pill.completed-week {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    /* Day Cards Grid */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+
+    .day-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      position: relative;
+    }
+
+    .day-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .day-card.done {
+      border-color: var(--success);
+      opacity: 0.88;
+    }
+
+    .day-card.milestone-card {
+      border-left: 4px solid var(--milestone);
+    }
+
+    .day-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .day-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tag.weekend {
+      color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    .tag.milestone {
+      background: var(--milestone);
+      color: #fff;
+      border-color: var(--milestone);
+    }
+
+    .check-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .check-wrapper input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--success);
+      cursor: pointer;
+    }
+
+    .day-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .day-card.done .day-title {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .day-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .resource-box {
+      font-size: 0.8rem;
+      background: var(--bg);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .day-notes {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+      resize: vertical;
+      min-height: 36px;
+    }
+
+    @media (max-width: 640px) {
+      .days-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>
+          ⚡ GenAI Zero-to-Pro Daily OS
+          <span class="badge-sde">Amazon SDE Edition · 84 Days</span>
+        </h1>
+        <p>Weekday: 75-min Pre-Standup Theory & Code · Weekend: 4-Hr Portfolio Build Sprint</p>
+      </div>
+      <div class="header-actions">
+        <button id="freezeBtn" title="Use a Streak Freeze for on-call or travel days">🧊 Freeze Streak (<span id="freezeCount">3</span> left)</button>
+        <button id="themeBtn">🌗 Theme</button>
+        <button id="exportBtn">⬇ Export JSON</button>
+      </div>
+    </header>
+
+    <!-- KPI Dashboard -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Overall Completion</div>
+        <div class="stat-value"><span id="completedCount">0</span> / 84 Days (<span id="completedPct">0%</span>)</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgressBar"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Study Hours Logged</div>
+        <div class="stat-value"><span id="hoursLogged">0</span> <span style="font-size:0.85rem;color:var(--text-muted);font-weight:500;">/ 153 hrs</span></div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">1.25h Mon–Fri · 4h Sat–Sun</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Streak</div>
+        <div class="stat-value">🔥 <span id="streakVal">0</span> Days</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);" id="streakSub">Check off today's block to build momentum</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Portfolio Milestones Shipped</div>
+        <div class="stat-value">🚀 <span id="milestoneCount">0</span> / 4 Repos</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">Weeks 3, 6, 9 & 12 Capstone Releases</div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="controls-bar">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <select id="phaseFilter">
+          <option value="all">All Phases (Weeks 1–12)</option>
+          <option value="1">Phase 1: LLM Internals & APIs (W1–W3)</option>
+          <option value="2">Phase 2: Production Hybrid RAG (W4–W6)</option>
+          <option value="3">Phase 3: LangGraph & Multi-Agents (W7–W9)</option>
+          <option value="4">Phase 4: QLoRA Fine-Tuning & LLMOps (W10–W12)</option>
+        </select>
+        <select id="statusFilter">
+          <option value="all">All Statuses</option>
+          <option value="todo">Remaining Only</option>
+          <option value="done">Completed Only</option>
+          <option value="milestone">Portfolio Milestones Only</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search topic (e.g., Qdrant, LangGraph, Bedrock)..." style="min-width:250px;" />
+      </div>
+      <button id="jumpNextBtn" class="btn-primary">🎯 Jump to Next Unfinished Day</button>
+    </section>
+
+    <!-- Week Selector Pills -->
+    <div class="week-pills" id="weekPills"></div>
+
+    <!-- Day Cards Container -->
+    <main class="days-grid" id="daysGrid"></main>
+  </div>
+
+  <script>
+    // 12-Week Curriculum Blueprint -> Expands deterministically into 84 Day-by-Day Cards
+    const weeklyBlueprint = [
+      {
+        week: 1, phase: 1, theme: "Transformer Internals & Multi-Provider Setup",
+        days: [
+          ["Self-Attention & Q/K/V Intuition", "Watch 3Blue1Brown Deep Learning Ch. 5 & 6; write matrix notes.", "3Blue1Brown - Attention in Transformers"],
+          ["Tokenization & Byte-Pair Encoding", "Code along with Karpathy's tokenizer video; inspect tiktoken cl100k_base.", "Andrej Karpathy - Let's build the GPT Tokenizer"],
+          ["Building Bigram & Self-Attention in PyTorch", "First 60 mins of Karpathy's 'Let's build GPT from scratch'.", "Andrej Karpathy - Let's build GPT"],
+          ["Multi-Head Attention & LayerNorm", "Finish Karpathy's GPT implementation and train on tiny Shakespeare.", "Andrej Karpathy GitHub: nanoGPT"],
+          ["AWS Bedrock & OpenAI SDK Setup", "Initialize `genai-portfolio` monorepo with `uv` or `Poetry`; configure boto3 Bedrock.", "AWS Bedrock Runtime API Docs"],
+          ["WEEKEND BUILD: Unified LLM Client Wrapper", "Build an async Python wrapper supporting OpenAI + AWS Bedrock Claude with token & cost calculation.", "Deliverable: `core/llm_client.py` + unit tests"],
+          ["WEEKEND BUILD: CLI Prompt & Cost Benchmark Tool", "Add retry exponential backoff, temperature/top-p controls, and CLI table output.", "Deliverable: Week 1 Git Tag `v0.1-foundation`"]
+        ]
+      },
+      {
+        week: 2, phase: 1, theme: "Structured Outputs, Pydantic & Function Calling",
+        days: [
+          ["System Prompts & Few-Shot Engineering", "Complete DeepLearning.AI Prompt Engineering short course.", "DeepLearning.AI - ChatGPT Prompt Engineering"],
+          ["Strict JSON Mode & Pydantic Schemas", "Force nested Pydantic schemas using OpenAI Structured Outputs & Bedrock Converse API.", "Pydantic + OpenAI Structured Outputs Guide"],
+          ["The Instructor Library & Auto-Retries", "Use `instructor` to automatically feed Pydantic validation errors back to the LLM.", "Instructor Library by Jason Liu"],
+          ["Native Tool & Function Calling", "Define JSON tool schemas and handle multi-turn tool execution loops.", "Anthropic / Bedrock Tool Use Documentation"],
+          ["AST Code Parsing for LLM Context", "Use Python `ast` and `tree-sitter` to extract clean function diffs from Git commits.", "Python AST Module Docs"],
+          ["WEEKEND BUILD: Deterministic Log & Diff Extractor", "Build a pipeline that ingests raw Git diffs and outputs structured bug/security findings.", "Deliverable: `services/diff_analyzer.py`"],
+          ["WEEKEND BUILD: Validation Self-Healing Loop", "Add Tenacity/Instructor retry loops + unit tests verifying 100% schema compliance.", "Deliverable: Week 2 Git Tag `v0.2-structured`"]
+        ]
+      },
+      {
+        week: 3, phase: 1, theme: "Async Streaming & Milestone 1 Deployment",
+        days: [
+          ["FastAPI Async Endpoints & Concurrency", "Build non-blocking LLM routes using `AsyncOpenAI` and `asyncio.gather`.", "FastAPI Concurrency & Async Guide"],
+          ["Server-Sent Events (SSE) Token Streaming", "Stream real-time LLM tokens and partial JSON deltas to the client.", "FastAPI StreamingResponse + SSE"],
+          ["Prompt Caching & Latency Optimization", "Implement Anthropic/Bedrock prompt caching for large repo context headers.", "AWS Bedrock Prompt Caching Docs"],
+          ["GitHub Webhook Integration", "Set up HMAC-verified GitHub PR webhook listener in FastAPI.", "GitHub Webhooks Developer Guide"],
+          ["Dockerizing the Review Assistant", "Write multi-stage `Dockerfile` and `docker-compose.yml` for the PR reviewer.", "Docker Best Practices for Python"],
+          ["WEEKEND BUILD: Ship Milestone 1 (PR Code-Review Agent)", "Connect GitHub Webhook -> AST Parser -> Bedrock/OpenAI -> Inline PR Comment poster.", "MILESTONE 1 REPO: Production PR Code-Review Assistant"],
+          ["WEEKEND BUILD: Milestone 1 Architecture Diagram & Demo", "Add Excalidraw architecture diagram to README and record a 2-min Loom walkthrough.", "MILESTONE 1 SHIPPED ✅"]
+        ]
+      },
+      {
+        week: 4, phase: 2, theme: "Embeddings, Chunking & Vector Databases",
+        days: [
+          ["Dense Embeddings & Vector Spaces", "Compare OpenAI `text-embedding-3-small`, Cohere v3, and BGE embeddings.", "MTEB Leaderboard & Hugging Face Docs"],
+          ["Chunking Strategies Deep Dive", "Implement fixed, recursive, markdown-header, and semantic chunking.", "Greg Kamradt - 5 Levels of Text Splitting"],
+          ["Spinning Up Qdrant in Docker", "Deploy Qdrant locally via Docker; create collections with HNSW index parameters.", "Qdrant Quickstart Documentation"],
+          ["Metadata Filtering & Payload Indexing", "Attach document source, timestamp, and access-control metadata to vector payloads.", "Qdrant Payload & Filtering Guide"],
+          ["Parsing Complex PDFs, Tables & Code", "Use `Docling` or `LlamaParse` to extract clean Markdown tables from technical PDFs.", "Docling / LlamaIndex Document Parsing"],
+          ["WEEKEND BUILD: Production Document Ingestion Pipeline", "Build an async ingestion worker that parses technical docs, chunks markdown, and upserts to Qdrant.", "Deliverable: `rag/ingest_pipeline.py`"],
+          ["WEEKEND BUILD: Incremental Indexing & Deduplication", "Add SHA-256 content hashing so unchanged documents are skipped on re-index.", "Deliverable: Week 4 Git Tag `v0.4-ingestion`"]
+        ]
+      },
+      {
+        week: 5, phase: 2, theme: "Advanced Hybrid RAG & Cross-Encoder Re-Ranking",
+        days: [
+          ["Why Naive Dense RAG Fails", "Analyze lexical mismatch on exact SKUs, error codes, and function names.", "Sam Witteveen - Advanced RAG Series"],
+          ["Sparse Vectors (BM25 / SPLADE)", "Implement sparse lexical indexing alongside dense embeddings in Qdrant.", "Qdrant Hybrid Search & Sparse Vectors"],
+          ["Reciprocal Rank Fusion (RRF)", "Combine BM25 and Dense search rankings mathematically using RRF.", "Krish Naik - Hybrid Search RAG Tutorial"],
+          ["Query Transformation: HyDE & Multi-Query", "Implement Hypothetical Document Embeddings and parallel sub-query expansion.", "DeepLearning.AI - Advanced Retrieval for AI"],
+          ["Cross-Encoder Re-Ranking", "Add a second-stage Cross-Encoder (`BAAI/bge-reranker-large` or Cohere Rerank) to score top-25 hits.", "Sentence-Transformers Cross-Encoder Docs"],
+          ["WEEKEND BUILD: Hybrid Search + Re-Ranking Pipeline", "Wire Query Rewriter -> Qdrant Hybrid RRF (Top 25) -> Cross-Encoder Re-ranker (Top 5).", "Deliverable: `rag/hybrid_retriever.py`"],
+          ["WEEKEND BUILD: Grounded Citations & Hallucination Guard", "Force the generator to output inline `[Doc_ID:Chunk_ID]` citations verified against retrieved context.", "Deliverable: Week 5 Git Tag `v0.5-hybrid-rag`"]
+        ]
+      },
+      {
+        week: 6, phase: 2, theme: "Quantitative RAG Evaluation (RAGAS) & Milestone 2",
+        days: [
+          ["The RAG Triad Metrics", "Learn Context Precision, Context Recall, Faithfulness, and Answer Relevance.", "DeepLearning.AI - Building & Evaluating Advanced RAG"],
+          ["Synthetic Golden Dataset Generation", "Generate 40 complex Q&A + ground-truth pairs from your docs automatically.", "RAGAS Testset Generation Docs"],
+          ["Automated Evaluation Pipeline with RAGAS", "Write a pytest/CLI evaluation harness running RAGAS metrics on every retrieval change.", "RAGAS Framework Documentation"],
+          ["Semantic Caching with Redis/Qdrant", "Cache high-similarity user queries to return instant (<50ms) responses.", "GPTCache / Qdrant Semantic Cache"],
+          ["FastAPI + Streamlit RAG UI", "Build a clean interface displaying retrieved chunks, re-ranker scores, and citation links.", "Streamlit Chat Elements Docs"],
+          ["WEEKEND BUILD: Ship Milestone 2 (Enterprise Hybrid RAG)", "Run ablation benchmark: Naive RAG vs. Hybrid RAG vs. Hybrid + Re-ranked RAG.", "MILESTONE 2 REPO: Enterprise Hybrid-Search RAG Engine"],
+          ["WEEKEND BUILD: Publish Benchmark Table & README", "Document exact precision/faithfulness percentage improvements in your GitHub README.", "MILESTONE 2 SHIPPED ✅"]
+        ]
+      },
+      {
+        week: 7, phase: 3, theme: "Agentic Reasoning (ReAct), Tool Sandboxes & Memory",
+        days: [
+          ["The ReAct (Reason + Act) Loop", "Build a raw ReAct agent loop from scratch in 80 lines of Python without frameworks.", "Yao et al. ReAct Paper + Simon Willison Blog"],
+          ["Introduction to LangGraph Architecture", "Understand StateGraph, Nodes, Edges, and TypedDict state reducers.", "DeepLearning.AI - AI Agents in LangGraph"],
+          ["Safe Tool Execution & Sandboxing", "Build SQL read-only query tools and sandboxed Python execution tools.", "LangGraph ToolNode & E2B Sandbox Docs"],
+          ["Self-Correction on Tool Errors", "Route SQL syntax errors or API tracebacks back into the agent node for automatic repair.", "Sam Witteveen - LangGraph Self-Correcting Agents"],
+          ["Agent Memory: Short-Term vs. Episodic", "Combine thread-level message trimming with long-term vector memory stores.", "LangGraph Memory & Store Concepts"],
+          ["WEEKEND BUILD: Self-Healing Text-to-SQL & Analytics Agent", "Build a LangGraph agent that inspects DB schemas, writes SQL, catches errors, and plots insights.", "Deliverable: `agents/sql_analyst_graph.py`"],
+          ["WEEKEND BUILD: Guardrails Against Infinite Agent Loops", "Add max-step recursion limits, token budgets, and fallback nodes.", "Deliverable: Week 7 Git Tag `v0.7-react-agent`"]
+        ]
+      },
+      {
+        week: 8, phase: 3, theme: "Stateful Checkpointing & Human-in-the-Loop (HITL)",
+        days: [
+          ["Persistent Checkpointers (Postgres / SQLite)", "Persist every graph super-step so agents can pause and resume across server restarts.", "LangGraph Persistence & Checkpointers"],
+          ["Time-Travel Debugging & State Forking", "Replay historical agent states and fork execution with modified tool outputs.", "LangGraph Time Travel Guide"],
+          ["Human-in-the-Loop (`interrupt` Breakpoints)", "Pause graph execution before high-risk actions (e.g., AWS infra changes or DB writes).", "LangGraph Human-in-the-Loop Docs"],
+          ["Parallel Node Execution (Map-Reduce)", "Use LangGraph `Send` API to fan out research tasks across parallel sub-agents.", "LangGraph Map-Reduce Tutorial"],
+          ["Streaming Agent Graph Events", "Stream node transitions and intermediate tool thoughts to a frontend via `astream_events`.", "LangGraph Streaming Modes Guide"],
+          ["WEEKEND BUILD: Stateful Remediation Workflow with Approval Gate", "Build an API where an agent diagnoses an issue, pauses for Slack/REST approval, and resumes.", "Deliverable: `agents/hitl_remediation.py`"],
+          ["WEEKEND BUILD: State Visualizer & Replay Endpoint", "Expose `/threads/{id}/history` and `/threads/{id}/approve` endpoints in FastAPI.", "Deliverable: Week 8 Git Tag `v0.8-hitl-state`"]
+        ]
+      },
+      {
+        week: 9, phase: 3, theme: "Multi-Agent Orchestration, MCP & Milestone 3",
+        days: [
+          ["Multi-Agent Topologies: Supervisor vs. Swarm", "Design a Supervisor router that delegates tasks to specialized worker agents.", "LangGraph Multi-Agent Workflows Guide"],
+          ["Model Context Protocol (MCP) Fundamentals", "Understand MCP hosts, clients, and servers for standardized tool/context sharing.", "Model Context Protocol (MCP) Official Spec"],
+          ["Building a Custom MCP Server in Python", "Build a FastMCP server exposing local CloudWatch/log analysis and FinOps cost tools.", "FastMCP / Python MCP SDK Docs"],
+          ["Agent Evaluation & Trajectory Testing", "Evaluate whether multi-agent systems called the right sequence of tools.", "LangSmith Agent Trajectory Evaluation"],
+          ["End-to-End Integration of Triage System", "Connect Supervisor -> Log Analyzer Agent -> Runbook RAG Agent -> FinOps/Remediation Agent.", "System Integration Sprint"],
+          ["WEEKEND BUILD: Ship Milestone 3 (Autonomous Incident & FinOps Multi-Agent)", "Package the multi-agent system with MCP tools and Human-in-the-Loop approval UI.", "MILESTONE 3 REPO: Autonomous Incident Triage Multi-Agent"],
+          ["WEEKEND BUILD: Architecture Walkthrough & Live Trace Demo", "Record a 2-min demo showing the agent diagnosing a simulated outage and waiting for human sign-off.", "MILESTONE 3 SHIPPED ✅"]
+        ]
+      },
+      {
+        week: 10, phase: 4, theme: "Open-Weight Models, Dataset Curation & QLoRA Fine-Tuning",
+        days: [
+          ["When to Fine-Tune vs. RAG vs. Prompting", "Learn cost/latency/accuracy trade-offs of adapting small 7B–8B open-weight models.", "Maxime Labonne - Fine-Tune Your Own LLM Course"],
+          ["LoRA & QLoRA Math Intuition", "Understand Low-Rank Adaptation ($W + BA$), rank $r$, $\\alpha$, and 4-bit NormalFloat quantization.", "QLoRA Paper & Trelis Research Breakdown"],
+          ["Synthetic Instruction Dataset Curation", "Format high-quality ShareGPT/ChatML datasets and filter low-quality rows.", "Hugging Face Datasets & Distilabel"],
+          ["Fast QLoRA Fine-Tuning with Unsloth", "Set up Unsloth + Hugging Face `TRL` (`SFTTrainer`) on Colab / RunPod GPU.", "Unsloth Notebooks (Llama-3.1-8B / Qwen-2.5-7B)"],
+          ["Hyperparameter Tuning & Loss Curves", "Monitor training vs. validation loss, learning rate schedulers, and LoRA target modules.", "Weights & Biases / TRL Fine-Tuning Guide"],
+          ["WEEKEND BUILD: Fine-Tune an 8B Specialist Model", "Fine-tune Llama-3.1-8B or Qwen-2.5-7B on complex Text-to-SQL or strict tool-calling schemas.", "Deliverable: LoRA Adapter on Hugging Face Hub"],
+          ["WEEKEND BUILD: Merge Adapters & Sanity Benchmark", "Merge LoRA weights into base model and run zero-shot before/after evaluation.", "Deliverable: Week 10 Git Tag `v1.0-qlora-model`"]
+        ]
+      },
+      {
+        week: 11, phase: 4, theme: "Quantization, vLLM High-Throughput Serving & LLMOps",
+        days: [
+          ["Post-Training Quantization (GGUF & AWQ)", "Convert your merged model into 4-bit GGUF and AWQ formats for fast inference.", "Maxime Labonne - Quantize LLMs with AutoAWQ / llama.cpp"],
+          ["High-Throughput Serving with vLLM", "Understand PagedAttention, continuous batching, andKV-cache memory calculation.", "vLLM Official Documentation"],
+          ["LLMOps Observability with Langfuse / LangSmith", "Trace token usage, cost per user, p95 latency, and prompt versions in production.", "Langfuse Open-Source LLMOps Docs"],
+          ["Security Guardrails & Prompt Injection Defense", "Add input/output guardrails for PII redaction, toxicity, and jailbreak prevention.", "Llama Guard / NeMo Guardrails"],
+          ["Semantic Router & Model Cascading", "Route easy queries to your fast 8B model and complex edge cases to Claude 3.5 / GPT-4o.", "Aurelio AI - Semantic Router"],
+          ["WEEKEND BUILD: Production vLLM + Langfuse LLMOps Stack", "Deploy your quantized model behind an OpenAI-compatible vLLM API with full Langfuse telemetry.", "Deliverable: `llmops/serving_stack`"],
+          ["WEEKEND BUILD: Load Testing & Latency Profiling", "Run Locust/k6 concurrent requests to measure Time-To-First-Token (TTFT) and tokens/sec.", "Deliverable: Week 11 Git Tag `v1.1-llmops`"]
+        ]
+      },
+      {
+        week: 12, phase: 4, theme: "Benchmarking, Capstone Packaging & Career Launch",
+        days: [
+          ["Rigorous Model & System Benchmarking", "Compare Fine-Tuned 8B vs. Base 8B vs. GPT-4o on accuracy, latency, and $/1M tokens.", "LLM-as-a-Judge Evaluation Scripts"],
+          ["Polishing GitHub Profile & Monorepo", "Standardize all 4 repositories with badges, quickstart `Makefile`s, and `.env.example`.", "Elite GitHub Portfolio Standards"],
+          ["System Design Diagrams (Excalidraw / Mermaid)", "Create high-signal architectural diagrams for all 4 projects showing data & control flow.", "Excalidraw / Mermaid.js"],
+          ["Amazon Internal Transfer / Promo Narrative", "Frame your 4 projects around AWS Bedrock, latency reduction, and operational excellence.", "Amazon SDE GenAI Portfolio Framing"],
+          [" GenAI System Design Interview Prep", "Practice designing scalable RAG, multi-tenant agent platforms, and low-latency inference.", "Chip Huyen - AI Engineering / System Design"],
+          ["WEEKEND BUILD: Ship Milestone 4 (Fine-Tuned Model + LLMOps Repo)", "Publish the complete fine-tuning notebook, vLLM serving config, and cost/accuracy benchmark report.", "MILESTONE 4 REPO: Domain-Specialist LLM + LLMOps"],
+          ["WEEKEND BUILD: Final Portfolio Launch & Demo Reel", "Pin all 4 flagship repositories to your GitHub profile with 2-minute Loom walkthroughs.", "🎓 84-DAY GEN-AI PRO ROADMAP COMPLETE!"]
+        ]
+      }
+    ];
+
+    // Flatten into 84 Day objects
+    const allDays = [];
+    weeklyBlueprint.forEach(w => {
+      w.days.forEach((d, idx) => {
+        const dayNum = (w.week - 1) * 7 + (idx + 1);
+        const isWeekend = idx >= 5;
+        const isMilestone = (w.week % 3 === 0) && (idx === 5 || idx === 6);
+        allDays.push({
+          day: dayNum,
+          week: w.week,
+          phase: w.phase,
+          weekTheme: w.theme,
+          dayLabel: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][idx],
+          hours: isWeekend ? 4.0 : 1.25,
+          isWeekend,
+          isMilestone,
+          title: d[0],
+          task: d[1],
+          resource: d[2]
+        });
+      });
+    });
+
+    const STORAGE_KEY = "genai_84day_os_v1";
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+      completed: {},
+      notes: {},
+      freezesLeft: 3,
+      frozenDays: {},
+      selectedWeek: "all",
+      theme: "dark"
+    };
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateStats();
+      renderWeekPills();
+    }
+
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", state.theme || "dark");
+    }
+
+    function updateStats() {
+      const doneDays = Object.keys(state.completed).filter(k => state.completed[k]);
+      const count = doneDays.length;
+      const pct = Math.round((count / 84) * 100);
+      document.getElementById("completedCount").textContent = count;
+      document.getElementById("completedPct").textContent = pct + "%";
+      document.getElementById("mainProgressBar").style.width = pct + "%";
+
+      let hours = 0;
+      doneDays.forEach(dNum => {
+        const item = allDays.find(x => x.day === Number(dNum));
+        if (item) hours += item.hours;
+      });
+      document.getElementById("hoursLogged").textContent = hours.toFixed(1);
+
+      // Milestones (Days 21, 42, 63, 84)
+      const milestoneDays = [21, 42, 63, 84];
+      const mDone = milestoneDays.filter(d => state.completed[d]).length;
+      document.getElementById("milestoneCount").textContent = mDone;
+
+      // Calculate Streak (consecutive completed or frozen days up to highest completed day)
+      let streak = 0;
+      let maxDay = 0;
+      for (let i = 84; i >= 1; i--) {
+        if (state.completed[i] || state.frozenDays[i]) {
+          maxDay = i;
+          break;
+        }
+      }
+      for (let i = maxDay; i >= 1; i--) {
+        if (state.completed[i] || state.frozenDays[i]) streak++;
+        else break;
+      }
+      document.getElementById("streakVal").textContent = streak;
+      document.getElementById("freezeCount").textContent = state.freezesLeft;
+    }
+
+    function renderWeekPills() {
+      const container = document.getElementById("weekPills");
+      container.innerHTML = "";
+
+      const allPill = document.createElement("button");
+      allPill.className = "week-pill" + (state.selectedWeek === "all" ? " active" : "");
+      allPill.textContent = "All 12 Weeks";
+      allPill.onclick = () => { state.selectedWeek = "all"; renderDays(); renderWeekPills(); };
+      container.appendChild(allPill);
+
+      for (let w = 1; w <= 12; w++) {
+        const weekDays = allDays.filter(d => d.week === w);
+        const allWeekDone = weekDays.every(d => state.completed[d.day]);
+        const pill = document.createElement("button");
+        pill.className = "week-pill" +
+          (state.selectedWeek === w ? " active" : "") +
+          (allWeekDone ? " completed-week" : "");
+        pill.textContent = `Week ${w}` + (allWeekDone ? " ✓" : "");
+        pill.onclick = () => {
+          state.selectedWeek = w;
+          renderDays();
+          renderWeekPills();
+        };
+        container.appendChild(pill);
+      }
+    }
+
+    function renderDays() {
+      const grid = document.getElementById("daysGrid");
+      const phaseVal = document.getElementById("phaseFilter").value;
+      const statusVal = document.getElementById("statusFilter").value;
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+
+      grid.innerHTML = "";
+
+      const filtered = allDays.filter(item => {
+        if (state.selectedWeek !== "all" && item.week !== state.selectedWeek) return false;
+        if (phaseVal !== "all" && item.phase !== Number(phaseVal)) return false;
+        const isDone = !!state.completed[item.day];
+        if (statusVal === "todo" && isDone) return false;
+        if (statusVal === "done" && !isDone) return false;
+        if (statusVal === "milestone" && !item.isMilestone) return false;
+        if (query) {
+          const hay = `${item.title} ${item.task} ${item.resource} ${item.weekTheme}`.toLowerCase();
+          if (!hay.includes(query)) return false;
+        }
+        return true;
+      });
+
+      filtered.forEach(item => {
+        const isDone = !!state.completed[item.day];
+        const isFrozen = !!state.frozenDays[item.day];
+        const card = document.createElement("div");
+        card.id = `day-card-${item.day}`;
+        card.className = `day-card ${isDone ? "done" : ""} ${item.isMilestone ? "milestone-card" : ""}`;
+
+        card.innerHTML = `
+          <div>
+            <div class="day-top">
+              <div class="day-badges">
+                <span class="tag">Day ${item.day} · W${item.week} (${item.dayLabel})</span>
+                <span class="tag ${item.isWeekend ? "weekend" : ""}">${item.isWeekend ? "Weekend 4h Build" : "Weekday 75m"}</span>
+                ${item.isMilestone ? `<span class="tag milestone">🚀 Milestone</span>` : ""}
+                ${isFrozen ? `<span class="tag">🧊 Frozen</span>` : ""}
+              </div>
+              <label class="check-wrapper">
+                <input type="checkbox" ${isDone ? "checked" : ""} data-day="${item.day}" />
+                <span style="font-size:0.78rem;font-weight:600;">Done</span>
+              </label>
+            </div>
+            <div class="day-title">${item.title}</div>
+            <p class="day-desc" style="margin-top:6px;">${item.task}</p>
+          </div>
+          <div>
+            <div class="resource-box">
+              <strong>📌 Resource / Target:</strong> ${item.resource}
+            </div>
+            <textarea class="day-notes" style="margin-top:8px;" placeholder="Add GitHub commit link, takeaway, or blocker..." data-note-day="${item.day}">${state.notes[item.day] || ""}</textarea>
+          </div>
+        `;
+
+        const checkbox = card.querySelector("input[type='checkbox']");
+        checkbox.addEventListener("change", (e) => {
+          state.completed[item.day] = e.target.checked;
+          saveState();
+          renderDays();
+        });
+
+        const noteInput = card.querySelector("textarea");
+        noteInput.addEventListener("input", (e) => {
+          state.notes[item.day] = e.target.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // Event Listeners
+    document.getElementById("phaseFilter").addEventListener("change", renderDays);
+    document.getElementById("statusFilter").addEventListener("change", renderDays);
+    document.getElementById("searchInput").addEventListener("input", renderDays);
+
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      state.theme = state.theme === "dark" ? "light" : "dark";
+      applyTheme();
+      saveState();
+    });
+
+    document.getElementById("freezeBtn").addEventListener("click", () => {
+      if (state.freezesLeft <= 0) {
+        alert("No streak freezes remaining!");
+        return;
+      }
+      const nextDay = allDays.find(d => !state.completed[d.day] && !state.frozenDays[d.day]);
+      if (!nextDay) return;
+      state.frozenDays[nextDay.day] = true;
+      state.freezesLeft -= 1;
+      saveState();
+      renderDays();
+    });
+
+    document.getElementById("jumpNextBtn").addEventListener("click", () => {
+      state.selectedWeek = "all";
+      document.getElementById("phaseFilter").value = "all";
+      document.getElementById("statusFilter").value = "all";
+      document.getElementById("searchInput").value = "";
+      renderWeekPills();
+      renderDays();
+      const nextDay = allDays.find(d => !state.completed[d.day]);
+      if (nextDay) {
+        const el = document.getElementById(`day-card-${nextDay.day}`);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+      const a = document.createElement("a");
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", "genai_84day_progress.json");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    // Init
+    applyTheme();
+    updateStats();
+    renderWeekPills();
+    renderDays();
+  </script>
+</body>
+</html>

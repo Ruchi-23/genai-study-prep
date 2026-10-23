@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6-Month SDE & GenAI Master OS | 168-Day Tracker</title>
+  <title>6-Month SDE & GenAI Master OS | Drag & Drop Tracker</title>
   <style>
     :root[data-theme="dark"] {
       --bg: #090d16;
@@ -20,6 +20,7 @@
       --dsa: #06b6d4;
       --genai: #8b5cf6;
       --backend: #f97316;
+      --drop-bg: rgba(99, 102, 241, 0.15);
       --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
     }
 
@@ -38,17 +39,18 @@
       --dsa: #0891b2;
       --genai: #7c3aed;
       --backend: #ea580c;
+      --drop-bg: rgba(79, 70, 229, 0.12);
       --card-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; }
     body { background-color: var(--bg); color: var(--text); line-height: 1.5; padding: 16px; transition: background-color 0.2s, color 0.2s; }
-    .container { max-width: 1360px; margin: 0 auto; }
+    .container { max-width: 1380px; margin: 0 auto; }
 
     header {
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;
-      padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      box-shadow: var(--card-shadow); margin-bottom: 18px;
+      padding: 18px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: var(--card-shadow); margin-bottom: 16px;
     }
     .brand h1 { font-size: 1.35rem; font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .badge { font-size: 0.72rem; background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
@@ -64,33 +66,33 @@
     .btn-primary:hover { background: var(--accent-hover); }
 
     .resource-dock {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px;
-      margin-bottom: 18px; box-shadow: var(--card-shadow);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px 18px;
+      margin-bottom: 16px; box-shadow: var(--card-shadow);
     }
     .dock-title {
-      font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
-      margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
+      margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
     }
     .dock-links { display: flex; flex-wrap: wrap; gap: 8px; }
     .dock-pill {
-      font-size: 0.75rem; font-weight: 600; padding: 5px 11px; border-radius: 8px; background: var(--bg);
+      font-size: 0.74rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; background: var(--bg);
       border: 1px solid var(--border); color: var(--text); text-decoration: none; display: inline-flex;
       align-items: center; gap: 5px; transition: all 0.15s;
     }
     .dock-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 18px; }
-    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; box-shadow: var(--card-shadow); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px 16px; box-shadow: var(--card-shadow); }
     .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; }
-    .stat-value { font-size: 1.45rem; font-weight: 800; margin: 4px 0; }
+    .stat-value { font-size: 1.45rem; font-weight: 800; margin: 3px 0; }
     .progress-bar-bg { width: 100%; height: 7px; background: var(--bg); border-radius: 999px; overflow: hidden; margin-top: 6px; }
     .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--success)); width: 0%; transition: width 0.3s ease; }
 
     .controls-bar {
       display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;
-      background: var(--surface); border: 1px solid var(--border); padding: 12px 16px; border-radius: 14px; margin-bottom: 14px;
+      background: var(--surface); border: 1px solid var(--border); padding: 10px 16px; border-radius: 14px; margin-bottom: 12px;
     }
-    .week-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .week-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .week-pill {
       padding: 5px 11px; border-radius: 999px; font-size: 0.76rem; font-weight: 600; background: var(--surface);
       border: 1px solid var(--border); color: var(--text-muted); cursor: pointer;
@@ -104,7 +106,7 @@
       display: flex; flex-direction: column; justify-content: space-between; gap: 12px; box-shadow: var(--card-shadow);
       transition: transform 0.15s ease, border-color 0.15s ease; position: relative;
     }
-    .day-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .day-card:hover { border-color: var(--accent); }
     .day-card.done { border-color: var(--success); opacity: 0.88; }
     .day-card.exam-day { border: 2px solid var(--exam); }
 
@@ -117,15 +119,33 @@
     .tag.buffer-tag { color: var(--exam); border-color: var(--exam); }
 
     .check-wrapper { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; font-size: 0.78rem; font-weight: 700; }
-    .check-wrapper input { width: 19px; height: 19px; accent-color: var(--success); cursor: pointer; }
-    .day-title { font-size: 0.96rem; font-weight: 700; margin-top: 4px; }
+    .check-wrapper input { width: 18px; height: 18px; accent-color: var(--success); cursor: pointer; }
+    .day-title { font-size: 0.95rem; font-weight: 700; margin-top: 4px; }
     .day-card.done .day-title { text-decoration: line-through; color: var(--text-muted); }
 
-    .blocks-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-    .study-block { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px; font-size: 0.8rem; display: flex; align-items: flex-start; gap: 8px; }
+    /* Drag & Drop Blocks Container */
+    .blocks-list {
+      display: flex; flex-direction: column; gap: 8px; margin-top: 6px; min-height: 80px;
+      border: 1px dashed transparent; border-radius: 10px; padding: 4px; transition: all 0.2s;
+    }
+    .blocks-list.drag-over {
+      border-color: var(--accent); background: var(--drop-bg);
+    }
+
+    .study-block {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px;
+      font-size: 0.8rem; display: flex; align-items: flex-start; gap: 8px; cursor: grab; user-select: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .study-block:active { cursor: grabbing; }
+    .study-block.dragging { opacity: 0.4; transform: scale(0.97); }
+
     .study-block input[type="checkbox"] { margin-top: 3px; width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
     .block-content { flex: 1; }
-    .block-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; display: inline-block; margin-bottom: 2px; }
+    .block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+    .block-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .drag-handle { color: var(--text-muted); font-size: 0.72rem; opacity: 0.5; }
+
     .lbl-dsa { color: var(--dsa); }
     .lbl-genai { color: var(--genai); }
     .lbl-iitm { color: var(--exam); }
@@ -136,7 +156,7 @@
 
     .day-notes {
       width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px;
-      padding: 7px 10px; font-size: 0.78rem; resize: vertical; min-height: 34px;
+      padding: 7px 10px; font-size: 0.78rem; resize: vertical; min-height: 34px; margin-top: 6px;
     }
 
     .modal-overlay {
@@ -160,9 +180,9 @@
       <div class="brand">
         <h1>
           ⚡ 6-Month Master SDE & GenAI OS
-          <span class="badge">168 Days · Oct 23, 2026 – Apr 8, 2027</span>
+          <span class="badge">168 Days · Oct 24, 2026 – Apr 10, 2027</span>
         </h1>
-        <p>Amazon SDE-1 + IITM (DL, AI, Finance) + Striver DSA + Hussein Nasser Backend Playlists + Complete GenAI (54h) + LLD/HLD (38.5h)</p>
+        <p>Amazon SDE-1 + IITM (DL, AI, Finance) + Striver DSA + Hussein Nasser Backend + Complete GenAI (54h) + LLD/HLD (38.5h)</p>
       </div>
       <div class="header-actions">
         <button id="openModalBtn" class="btn-primary">✨ + Add Live Topic</button>
@@ -175,10 +195,10 @@
       </div>
     </header>
 
-    <!-- Master Resource Quick-Launch Dock -->
+    <!-- Master Resource Dock -->
     <section class="resource-dock">
       <div class="dock-title">
-        <span>📌 Primary Playlists & Direct Portals</span>
+        <span>📌 Primary Portals & Playlists · 💡 Drag & Drop tasks between any day cards!</span>
         <span id="countdownBanner" style="color:var(--exam);"></span>
       </div>
       <div class="dock-links">
@@ -204,7 +224,7 @@
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgressBar"></div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Striver DSA Sprint (Oct 23 – Dec 13)</div>
+        <div class="stat-label">Striver DSA Sprint (Oct 24 – Dec 14)</div>
         <div class="stat-value" style="color:var(--dsa);"><span id="dsaDoneCount">0</span> / 52 Days</div>
         <div style="font-size:0.75rem;color:var(--text-muted);">1.5–2.5h daily @ 1.5x with Notes</div>
       </div>
@@ -247,10 +267,7 @@
       </div>
     </section>
 
-    <!-- Week Selector Pills (W1 to W24) -->
     <div class="week-pills" id="weekPills"></div>
-
-    <!-- Main Days Container -->
     <main class="days-grid" id="daysGrid"></main>
   </div>
 
@@ -298,7 +315,6 @@
   </div>
 
   <script>
-    // Week select options
     const modalWeekSel = document.getElementById("modalWeekSelect");
     for (let w = 1; w <= 24; w++) {
       const opt = document.createElement("option");
@@ -307,7 +323,6 @@
       modalWeekSel.appendChild(opt);
     }
 
-    // 52-Day Striver DSA Sequence (Oct 23 - Dec 13, 2026)
     const striverTopics = [
       "Step 1: Learn the Basics, Patterns & Time Complexity",
       "Step 1: Basic Maths, Recursion & Hashing Notes",
@@ -363,9 +378,7 @@
       "Step 17: Tries & Final Striver Revision (Implement Trie II, Max XOR of Two Numbers, Offline Queries)"
     ];
 
-    // EXACT Video Titles from Hussein Nasser's Beginner, Intermediate, and Advanced Playlists
     const hnasrSyllabus = [
-      // Beginner Playlist (PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT)
       { title: "How to Become a Good Backend Engineer (Fundamentals)", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
       { title: "Advice for Beginner Backend Engineers in Software Companies", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
       { title: "The OSI Model - Explained by Example", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
@@ -386,8 +399,6 @@
       { title: "Load Balancing Server-Sent Events (SSE) Backends with Round Robin", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
       { title: "Building an Upload Backend Service with Vanilla JS Progress", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
       { title: "Backend Leaking Postgres Database Connections - How to Fix It", pl: "Beginner", url: "https://youtube.com/playlist?list=PLQnljOFTspQUNnO4p00ua_C5mKTfldiYT" },
-
-      // Intermediate Playlist (PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs)
       { title: "What is the TCP 3-Way Handshake and Why Backend Engineers Should Understand It", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
       { title: "Layer 4 vs Layer 7 Proxying in Details Explained with Examples", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
       { title: "Database Engines Crash Course (MyISAM, Aria, InnoDB, XtraDB, LevelDB, RocksDB)", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
@@ -400,8 +411,6 @@
       { title: "Column vs Row Oriented Databases Explained", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
       { title: "They Enabled Postgres Partitioning and Their Backend Fell Apart", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
       { title: "When Should You Shard Your Database?", pl: "Intermediate", url: "https://youtube.com/playlist?list=PLQnljOFTspQWGuRmwojJ6LiV0ejm6eOcs" },
-
-      // Advanced Playlist (PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ)
       { title: "Database Replication Crash Course (with Postgres 13)", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
       { title: "How Database Cursors Help in Fetching Large Result Sets from SQL", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
       { title: "Relational Database ACID Transactions (Explained by Example)", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" },
@@ -414,8 +423,8 @@
       { title: "Kafka Architecture & Streaming Log Internals", pl: "Advanced", url: "https://youtube.com/playlist?list=PLQnljOFTspQUybacGRk1b_p13dgI-SmcZ" }
     ];
 
-    // Calendar Anchors
-    const startDate = new Date(2026, 9, 23); // Oct 23, 2026
+    // Calendar Anchors (START DATE: OCTOBER 24, 2026)
+    const startDate = new Date(2026, 9, 24); // Saturday, Oct 24, 2026
     const quiz1Date = new Date(2026, 10, 15); // Nov 15, 2026
     const quiz2Date = new Date(2026, 11, 5);  // Dec 5, 2026
     const endTermDate = new Date(2027, 0, 10); // Jan 10, 2027
@@ -435,10 +444,11 @@
       const dayName = currDate.toLocaleDateString("en-US", { weekday: "short" });
       const isoDate = currDate.toISOString().split("T")[0];
 
-      // BLOCK 1: Morning Foundation (Striver DSA Oct 23-Dec 13 -> Hussein Nasser Dec 14-Jan 24 -> System Design LLD/HLD)
+      // BLOCK 1: Morning Foundation
       let block1 = {};
       if (i < 52) {
         block1 = {
+          id: `b_dsa_${dayNum}`,
           tag: "Striver DSA",
           cls: "lbl-dsa",
           text: `${isWeekend ? "[2.5–3h Deep Weekend Practice]" : "[1.5–2h @ 1.5x with Notes]"} ${striverTopics[i]} (<a href="https://youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank">Striver Playlist ↗</a>)`
@@ -447,12 +457,12 @@
         const hIdx = i - 52;
         const item = hnasrSyllabus[hIdx % hnasrSyllabus.length];
         block1 = {
+          id: `b_hnasr_${dayNum}`,
           tag: `@hnasr (${item.pl})`,
           cls: "lbl-sys",
           text: `[90m Morning Block] <strong>${item.title}</strong> (<a href="${item.url}" target="_blank">${item.pl} Playlist ↗</a>)`
         };
       } else {
-        // Day 95 to 168: System Design (LLD + HLD) - Udemy 38.5 hrs (at 1.5x = ~25.5h actual)
         const sysModules = [
           "HLD: Requirements Clarification, Capacity Estimations & High-Level Block Diagrams",
           "HLD: Relational vs NoSQL Storage, Sharding Keys & Consistent Hashing Rings",
@@ -471,13 +481,14 @@
         ];
         const sIdx = Math.floor((i - 94) / 5) % sysModules.length;
         block1 = {
+          id: `b_sys_${dayNum}`,
           tag: "System Design (LLD+HLD)",
           cls: "lbl-sys",
           text: `[90m Morning Block] Udemy 38.5h Course @ 1.5x: ${sysModules[sIdx]}`
         };
       }
 
-      // BLOCK 2: IITM Degree Block (With 3-Week Exam Buffers & AWS MLU Post-Jan 10)
+      // BLOCK 2: IITM Degree Block
       let block2 = {};
       let isExamBuffer = false;
       let isExamDay = false;
@@ -485,28 +496,29 @@
 
       if (isoDate === "2026-11-15") {
         isExamDay = true; isExamBuffer = true; examBadge = "🎯 QUIZ 1 TODAY";
-        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 1 (Nov 15):</strong> Deep Learning, AI & Corporate Finance. Full exam focus!" };
+        block2 = { id: `b_iitm_${dayNum}`, tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 1 (Nov 15):</strong> Deep Learning, AI & Corporate Finance. Full exam focus!" };
       } else if (isoDate === "2026-12-05") {
         isExamDay = true; isExamBuffer = true; examBadge = "🎯 QUIZ 2 TODAY";
-        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 2 (Dec 5):</strong> Deep Learning, AI & Corporate Finance. Full exam focus!" };
+        block2 = { id: `b_iitm_${dayNum}`, tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>QUIZ 2 (Dec 5):</strong> Deep Learning, AI & Corporate Finance. Full exam focus!" };
       } else if (isoDate === "2027-01-10") {
         isExamDay = true; isExamBuffer = true; examBadge = "🎓 END-TERM TODAY";
-        block2 = { tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>END-TERM EXAMS (Jan 10, 2027):</strong> Final Semester Examinations!" };
+        block2 = { id: `b_iitm_${dayNum}`, tag: "IITM EXAM DAY", cls: "lbl-iitm", text: "<strong>END-TERM EXAMS (Jan 10, 2027):</strong> Final Semester Examinations!" };
       } else if (currDate < quiz1Date) {
         isExamBuffer = true; examBadge = "📚 Quiz 1 Buffer";
         const subj = ["Deep Learning (Backpropagation, Optimization, Convolutions)", "Artificial Intelligence (A* Search, CSP, Logic & Games)", "Corporate Finance (Time Value of Money, Bond & Stock Valuation, NPV)"][i % 3];
-        block2 = { tag: "IITM Quiz 1 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Lecture notes & mock problem sets.` };
+        block2 = { id: `b_iitm_${dayNum}`, tag: "IITM Quiz 1 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Lecture notes & mock problem sets.` };
       } else if (currDate < quiz2Date) {
         isExamBuffer = true; examBadge = "📚 Quiz 2 Buffer";
         const subj = ["Deep Learning (RNNs, LSTMs, Attention Mechanisms)", "Artificial Intelligence (Bayesian Networks, MDPs, Reinforcement Learning)", "Corporate Finance (CAPM, Risk-Return, Capital Budgeting, WACC)"][i % 3];
-        block2 = { tag: "IITM Quiz 2 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Numerical derivations & past year papers.` };
+        block2 = { id: `b_iitm_${dayNum}`, tag: "IITM Quiz 2 Prep", cls: "lbl-iitm", text: `[1.5h Post-Standup Conf Room Block] <strong>${subj}</strong> — Numerical derivations & past year papers.` };
       } else if (currDate < endTermDate) {
-        isExamBuffer = (i >= 58); // Dec 20 - Jan 10
+        isExamBuffer = (i >= 57);
         examBadge = isExamBuffer ? "🔥 End-Term 3-Wk Blitz" : "📘 IITM Coursework";
         const subj = ["Deep Learning End-Term Comprehensive Revision", "Artificial Intelligence End-Term Theory & Proofs", "Corporate Finance Complete Formula & Case Study Blitz"][i % 3];
-        block2 = { tag: isExamBuffer ? "IITM End-Term Blitz" : "IITM Coursework", cls: "lbl-iitm", text: `[${isExamBuffer ? "2h Conf Room Exam Block" : "1h Study Block"}] <strong>${subj}</strong>.` };
+        block2 = { id: `b_iitm_${dayNum}`, tag: isExamBuffer ? "IITM End-Term Blitz" : "IITM Coursework", cls: "lbl-iitm", text: `[${isExamBuffer ? "2h Conf Room Exam Block" : "1h Study Block"}] <strong>${subj}</strong>.` };
       } else {
         block2 = {
+          id: `b_iitm_${dayNum}`,
           tag: "AWS MLU & IITM Term",
           cls: "lbl-iitm",
           text: `[1h Study Block] Complete modules from <a href="https://portal.mlu.aws.dev/course-catalog/" target="_blank">AWS MLU Course Catalog ↗</a> + Next IITM Semester Lectures.`
@@ -516,28 +528,27 @@
       // BLOCK 3: GenAI, Full-Stack & Capstone Focus
       let block3 = {};
       if (i < 10) {
-        // Days 1-10: Java Refresher Playlist (2 hrs/day at 2x)
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: `Java Refresher (Day ${i + 1}/10)`,
           cls: "lbl-genai",
           text: `[1h actual @ 2x] Complete Day ${i + 1} of <a href="https://youtube.com/playlist?list=PL6W8uoQQ2c63f469AyV78np0rbxRFppkx" target="_blank">Java Refresher Playlist ↗</a> + OOP/Memory notes.`
         };
       } else if (i >= 10 && i < 14) {
-        // Days 11-14: Codebasics Agentic AI Crash Course (2.5h + notes + 2 projects)
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "Agentic AI Crash Course",
           cls: "lbl-genai",
           text: `[Code + Notes] <a href="https://youtu.be/D74el9mvNak" target="_blank">Codebasics Agentic AI Crash Course ↗</a>: Build Rufus Multimodal Shopping Agent & Telecom RAG.`
         };
-      } else if (i >= 14 && i < 23) {
-        // Days 15-23: Quiz 1 Final Lead-Up
+      } else if (i >= 14 && i < 22) {
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "IITM Quiz 1 Protection",
           cls: "lbl-iitm",
-          text: `Light GenAI code review only — protect energy for IITM Quiz 1 (Deep Learning, AI, Finance).`
+          text: `Light GenAI review only — prioritize energy for IITM Quiz 1 (Deep Learning, AI, Finance).`
         };
-      } else if (i >= 23 && i < 43) {
-        // Nov 15 - Dec 4: Complete Agentic AI Course (10.5h Krish Naik + notes)
+      } else if (i >= 22 && i < 42) {
         const agenticUnits = [
           "LangChain v1 Architecture, uv Package Manager & Basic Agent Loops",
           "Multi-Model Providers (OpenAI, Gemini, Groq), Async Streaming & Structured Outputs",
@@ -553,14 +564,14 @@
           "LLM Evaluations: LangSmith Evals, LLM-as-a-Judge & RAG Triad Metrics",
           "LLM Gateways: LiteLLM, Fallbacks, Caching, Load Balancing & Semantic Routing"
         ];
-        const aIdx = (i - 23) % agenticUnits.length;
+        const aIdx = (i - 22) % agenticUnits.length;
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "10.5h Agentic AI Course",
           cls: "lbl-genai",
           text: `[45m–1h + Notes] ${agenticUnits[aIdx]} (<a href="https://youtu.be/rV3HJ4LEZ7k" target="_blank">10.5h Course ↗</a>)`
         };
-      } else if (i >= 43 && i < 65) {
-        // Dec 5 - Dec 27: Karpathy Zero-to-Hero Neural Networks
+      } else if (i >= 42 && i < 64) {
         const kTopics = [
           "Micrograd: Building Backpropagation & Autograd Engine from Scratch in Python",
           "Makemore Part 1: Bigram Language Model, PyTorch Tensors & Negative Log Likelihood",
@@ -572,19 +583,19 @@
           "Let's Build the GPT Tokenizer: Byte-Pair Encoding (BPE) & tiktoken Mechanics"
         ];
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "Karpathy Zero-to-Hero",
           cls: "lbl-genai",
-          text: `${kTopics[(i - 43) % kTopics.length]} (<a href="https://youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">Karpathy Playlist ↗</a>)`
+          text: `${kTopics[(i - 42) % kTopics.length]} (<a href="https://youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">Karpathy Playlist ↗</a>)`
         };
-      } else if (i >= 65 && i < 79) {
-        // Dec 28 - Jan 10: End-Term Exam Crunch
+      } else if (i >= 64 && i < 78) {
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "End-Term Intensive Sprint",
           cls: "lbl-iitm",
           text: `Dedicated evening exam block for IITM Deep Learning, AI & Corporate Finance End-Term Preparation.`
         };
-      } else if (i >= 79 && i < 129) {
-        // Jan 11 - Mar 1: Complete GenAI Course [54 hrs] Krish Naik - Udemy (at 1.5x = 36h actual)
+      } else if (i >= 78 && i < 128) {
         const genaiUdemyUnits = [
           "Python Advanced Refresher, Asyncio & Environment Toolchains for GenAI",
           "OpenAI API, Claude API & Hugging Face Transformers Deep Dive",
@@ -596,14 +607,14 @@
           "LLMOps: Model Serving with vLLM, Ollama, Langfuse Tracing & Latency Monitoring",
           "AWS Bedrock & Enterprise GenAI Deployments on Cloud Infrastructure"
         ];
-        const gIdx = Math.floor((i - 79) / 6) % genaiUdemyUnits.length;
+        const gIdx = Math.floor((i - 78) / 6) % genaiUdemyUnits.length;
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "Complete GenAI Udemy (54h)",
           cls: "lbl-genai",
           text: `[45–60m @ 1.5x] Krish Naik Udemy GenAI Course: ${genaiUdemyUnits[gIdx]}`
         };
-      } else if (i >= 129 && i < 150) {
-        // Mar 2 - Mar 23: React Full Course (freeCodeCamp - youtu.be/TtPXvEcE11E)
+      } else if (i >= 128 && i < 149) {
         const reactUnits = [
           "React Basics: JSX, Functional Components, Props & Rendering Lists",
           "State Management: useState, Controlled Inputs & Form Handling",
@@ -612,22 +623,23 @@
           "Token Streaming UI: Consuming FastAPI Server-Sent Events (SSE) in Real-Time",
           "Agent Visualization: Building Interactive Graph & Message History Dashboards"
         ];
-        const rIdx = Math.floor((i - 129) / 4) % reactUnits.length;
+        const rIdx = Math.floor((i - 128) / 4) % reactUnits.length;
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "React Full Course",
           cls: "lbl-genai",
           text: `[1h Frontend Block] <a href="https://youtu.be/TtPXvEcE11E" target="_blank">React Full Course ↗</a>: ${reactUnits[rIdx]}`
         };
-      } else if (i >= 150 && i < 155) {
-        // Claude Code Crash Course
+      } else if (i >= 149 && i < 154) {
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "Claude Code Crash Course",
           cls: "lbl-genai",
           text: `[Code along] <a href="https://youtu.be/TAKDIvvUdc4" target="_blank">Claude Code Crash Course (2 hrs) ↗</a>: CLI workflows, agent teams, custom sub-agents & skills.`
         };
       } else {
-        // Final Capstones & Monorepo Polish
         block3 = {
+          id: `b_genai_${dayNum}`,
           tag: "Capstone Portfolio Polish",
           cls: "lbl-genai",
           text: `Finalize React + LangGraph + LiteLLM Full-Stack AI Repositories with Docker, Excalidraw diagrams & 2-minute Loom walkthroughs.`
@@ -652,10 +664,11 @@
       });
     }
 
-    const STORAGE_KEY = "ruchira_master_os_168_v3";
+    const STORAGE_KEY = "ruchira_master_os_168_dnd_v1";
     let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
       completedDays: {},
       completedBlocks: {},
+      dayBlocks: {}, // Custom overrides for drag-and-drop: dayId -> array of blocks
       notes: {},
       customDays: [],
       freezesLeft: 5,
@@ -665,7 +678,13 @@
     };
 
     function getAllDays() {
-      return [...baseDays, ...(state.customDays || [])].sort((a, b) => a.day - b.day);
+      const all = [...baseDays, ...(state.customDays || [])].sort((a, b) => a.day - b.day);
+      all.forEach(d => {
+        if (state.dayBlocks[d.id]) {
+          d.blocks = state.dayBlocks[d.id];
+        }
+      });
+      return all;
     }
 
     function saveState() {
@@ -703,14 +722,18 @@
       document.getElementById("mainProgressBar").style.width = pct + "%";
 
       let dsaDone = 0;
-      for (let i = 1; i <= 52; i++) {
-        if (state.completedDays[`day_${i}`] || state.completedBlocks[`day_${i}_b0`]) dsaDone++;
-      }
+      all.forEach(d => {
+        (d.blocks || []).forEach(b => {
+          if (b.tag.includes("DSA") && state.completedBlocks[b.id]) dsaDone++;
+        });
+      });
       document.getElementById("dsaDoneCount").textContent = dsaDone;
 
       let iitmDone = 0;
       all.forEach(d => {
-        if (state.completedDays[d.id] || state.completedBlocks[`${d.id}_b1`]) iitmDone++;
+        (d.blocks || []).forEach(b => {
+          if (b.tag.includes("IITM") && state.completedBlocks[b.id]) iitmDone++;
+        });
       });
       document.getElementById("iitmDoneCount").textContent = iitmDone;
 
@@ -755,6 +778,8 @@
       }
     }
 
+    let draggedBlockData = null; // Store { block, sourceDayId }
+
     function renderDays() {
       const grid = document.getElementById("daysGrid");
       const monthVal = document.getElementById("monthFilter").value;
@@ -787,14 +812,16 @@
         card.id = `card_${item.id}`;
         card.className = `day-card ${isDone ? "done" : ""} ${item.isExamDay ? "exam-day" : ""}`;
 
-        const blocksHtml = (item.blocks || []).map((b, bIdx) => {
-          const bKey = `${item.id}_b${bIdx}`;
-          const bChecked = isDone || !!state.completedBlocks[bKey];
+        const blocksHtml = (item.blocks || []).map(b => {
+          const bChecked = isDone || !!state.completedBlocks[b.id];
           return `
-            <div class="study-block">
-              <input type="checkbox" data-bkey="${bKey}" data-parent="${item.id}" ${bChecked ? "checked" : ""} />
+            <div class="study-block" draggable="true" data-bid="${b.id}" data-dayid="${item.id}">
+              <input type="checkbox" data-bid="${b.id}" data-parent="${item.id}" ${bChecked ? "checked" : ""} />
               <div class="block-content">
-                <div class="block-label ${b.cls}">${b.tag}</div>
+                <div class="block-header">
+                  <span class="block-label ${b.cls}">${b.tag}</span>
+                  <span class="drag-handle" title="Drag to another day">⠿ drag</span>
+                </div>
                 <div>${b.text}</div>
               </div>
             </div>
@@ -817,16 +844,17 @@
               </label>
             </div>
             <div class="day-title">${item.title}</div>
-            <div class="blocks-list">${blocksHtml}</div>
+            <div class="blocks-list" data-dayid="${item.id}">${blocksHtml}</div>
           </div>
-          <textarea class="day-notes" placeholder="Log progress, LeetCode count, or GitHub PR link..." data-note-id="${item.id}">${state.notes[item.id] || ""}</textarea>
+          <textarea class="day-notes" placeholder="Log progress, notes, or GitHub link..." data-note-id="${item.id}">${state.notes[item.id] || ""}</textarea>
         `;
 
+        // Checkbox events
         card.querySelector(".master-day-check").addEventListener("change", (e) => {
           const checked = e.target.checked;
           state.completedDays[item.id] = checked;
-          (item.blocks || []).forEach((_, idx) => {
-            state.completedBlocks[`${item.id}_b${idx}`] = checked;
+          (item.blocks || []).forEach(b => {
+            state.completedBlocks[b.id] = checked;
           });
           saveState();
           renderDays();
@@ -834,12 +862,74 @@
 
         card.querySelectorAll(".study-block input[type='checkbox']").forEach(subCheck => {
           subCheck.addEventListener("change", (e) => {
-            const bKey = e.target.getAttribute("data-bkey");
-            state.completedBlocks[bKey] = e.target.checked;
-            const allSubDone = (item.blocks || []).every((_, idx) => state.completedBlocks[`${item.id}_b${idx}`]);
+            const bId = e.target.getAttribute("data-bid");
+            state.completedBlocks[bId] = e.target.checked;
+            const allSubDone = (item.blocks || []).every(b => state.completedBlocks[b.id]);
             state.completedDays[item.id] = allSubDone;
             saveState();
             renderDays();
+          });
+        });
+
+        // Drag & Drop event bindings
+        const blocksList = card.querySelector(".blocks-list");
+
+        blocksList.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          blocksList.classList.add("drag-over");
+        });
+
+        blocksList.addEventListener("dragleave", () => {
+          blocksList.classList.remove("drag-over");
+        });
+
+        blocksList.addEventListener("drop", (e) => {
+          e.preventDefault();
+          blocksList.classList.remove("drag-over");
+          if (!draggedBlockData) return;
+
+          const targetDayId = item.id;
+          const sourceDayId = draggedBlockData.sourceDayId;
+          const blockToMove = draggedBlockData.block;
+
+          if (targetDayId === sourceDayId) return;
+
+          // Remove block from source day
+          const all = getAllDays();
+          const sourceDay = all.find(d => d.id === sourceDayId);
+          const targetDay = all.find(d => d.id === targetDayId);
+
+          if (!sourceDay || !targetDay) return;
+
+          sourceDay.blocks = sourceDay.blocks.filter(b => b.id !== blockToMove.id);
+          targetDay.blocks.push(blockToMove);
+
+          // Save custom overrides
+          state.dayBlocks[sourceDayId] = [...sourceDay.blocks];
+          state.dayBlocks[targetDayId] = [...targetDay.blocks];
+
+          draggedBlockData = null;
+          saveState();
+          renderDays();
+        });
+
+        card.querySelectorAll(".study-block").forEach(blockEl => {
+          blockEl.addEventListener("dragstart", (e) => {
+            const bId = blockEl.getAttribute("data-bid");
+            const dayId = blockEl.getAttribute("data-dayid");
+            const all = getAllDays();
+            const dayObj = all.find(d => d.id === dayId);
+            const blockObj = (dayObj ? dayObj.blocks : []).find(b => b.id === bId);
+
+            if (blockObj) {
+              draggedBlockData = { block: blockObj, sourceDayId: dayId };
+              blockEl.classList.add("dragging");
+              e.dataTransfer.setData("text/plain", bId);
+            }
+          });
+
+          blockEl.addEventListener("dragend", () => {
+            blockEl.classList.remove("dragging");
           });
         });
 
@@ -931,7 +1021,7 @@
       reader.readAsText(file);
     });
 
-    // Live Resource Lookup Engine
+    // Live Resource Lookup Modal
     const modal = document.getElementById("topicModal");
     const resultsBox = document.getElementById("liveResultsBox");
     const resultsList = document.getElementById("liveResultsList");
@@ -960,7 +1050,7 @@
       const encoded = encodeURIComponent(query);
 
       suggestions.push({
-        source: "🎥 YouTube Deep Search",
+        source: "🎥 YouTube Search",
         title: `Search YouTube: "${query}" Hands-on Tutorial`,
         url: `https://www.youtube.com/results?search_query=${encoded}+hands+on+tutorial`
       });
@@ -1011,6 +1101,7 @@
       if (!title) return alert("Please enter a topic title.");
 
       const newBlock = {
+        id: `b_custom_${Date.now()}`,
         tag: "✨ Dynamic Addition",
         cls: "lbl-genai",
         text: `Study & Implement: <strong>${title}</strong> (<a href="${url}" target="_blank">Launch Resource ↗</a>)`
@@ -1018,7 +1109,10 @@
 
       if (mode === "inject_today") {
         const targetDay = baseDays.find(d => d.week === week && !state.completedDays[d.id]) || baseDays.find(d => d.week === week);
-        if (targetDay) targetDay.blocks.push(newBlock);
+        if (targetDay) {
+          if (!state.dayBlocks[targetDay.id]) state.dayBlocks[targetDay.id] = [...targetDay.blocks];
+          state.dayBlocks[targetDay.id].push(newBlock);
+        }
       } else {
         const newDayNum = getAllDays().length + 1;
         if (!state.customDays) state.customDays = [];
